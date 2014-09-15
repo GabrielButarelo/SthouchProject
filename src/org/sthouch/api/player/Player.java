@@ -1,6 +1,7 @@
 package org.sthouch.api.player;
 
-import org.sthouch.api.server.World;
+import org.sthouch.api.server.Location;
+import org.sthouch.api.world.World;
 
 /**
  * <p>Essa interface é onde fica todas as informações de um jogador, como por exemplo seu nick, level, vida e etc.</p>
@@ -14,12 +15,18 @@ import org.sthouch.api.server.World;
 public interface Player {
 
 	/**
-	 * <p>Pega o nickname de um determinado jogador.</p>
+	 * <p>Pega o nickname de um determinado Jogador.</p>
 	 */
 	public String getName();
+
+	/**
+	 * <p>Retorna a Localização do Jogador.</p>
+	 * @return Location
+	 */
+	public Location getPlayerLocation();
 	
 	/**
-	 *<p>Manda uma mensagem no chat para um determinado jogador.</p>
+	 *<p>Manda uma mensagem no chat para um determinado Jogador.</p>
 	 * 
 	 * @param message 
 	 */
@@ -34,6 +41,28 @@ public interface Player {
 	 * @param z
 	 */
 	public void teleportTo(World world, Integer x, Integer y, Integer z);
+
+	/**
+	 *<p>Teletransporta um determinado jogador para uma localização.</p>
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param yaw
+	 * @param pitch
+	 */
+	public void teleportTo(World world, Integer x, Integer y, Integer z, Float yaw, Float pitch);
+
+	/**
+	 *<p>Teletransporta um determinado jogador para uma localização.</p>
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
+	public void teleportTo(Location location);
 	
 	/**
 	 *<p>Pega a quantidade atual de vida de um determinado jogador.</p>

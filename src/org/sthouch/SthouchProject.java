@@ -1,26 +1,24 @@
 package org.sthouch;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
- * <b>Classe Principal do Sthouch Project</b>
+ * <p>Classe Principal do Sthouch Project</p>
  * @author Pedro
  *
  */
 public class SthouchProject {
 
-	/**
-	 * <b>Propriedade que define a Classe como Main (Principal)</b>
-	 * @param args
-	 * @author Pedro
-	 */
+	public static String version = "";
+
 	public static void main(String[] args) {
 		version = "1.2.2D Alpha (1.5.2)";
-		getDirectory();
+		createDefaultFiles();
 	}
 
 	/**
-	 * <b>Representa o Diretório onde está o arquivo .jar do Sthouch</b>
+	 * <p>Representa o Diretório onde está o arquivo .jar do Sthouch</p>
 	 * @author Pedro
 	 * @return Directory of Sthouch Jar File
 	 */
@@ -29,6 +27,65 @@ public class SthouchProject {
 		return new File(path);
 	}
 
-	public static  String version = "";
+	/**
+	 * <p>Criar arquivos padrões do Sistema.</p>
+	 */
+	public static void createDefaultFiles() {
+		File directory = getDirectory();
+
+		File plugins = new File(directory, "server-plugins");
+		if (!plugins.exists()) {
+			try {
+				plugins.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		File downloads = new File(directory, "downloads");
+		if (!downloads.exists()) {
+			try {
+				downloads.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		File worlds = new File(directory, "worlds");
+		if (!worlds.exists()) {
+			try {
+				worlds.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		File logs = new File(directory, "logs");
+		if (!logs.exists()) {
+			try {
+				logs.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		File licence = new File(directory, "licence.txt");
+		if (!licence.exists()) {
+			try {
+				licence.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		File news = new File(directory, "news");
+		if (!news.exists()) {
+			try {
+				news.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 }
