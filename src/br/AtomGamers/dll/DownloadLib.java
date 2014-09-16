@@ -36,65 +36,42 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.world;
+package br.AtomGamers.dll;
 
-import java.util.List;
-
-import org.sthouch.api.player.Player;
+import java.io.*;
+import java.net.*;
 
 /**
- * <b>Gerenciamento de Mundos por Mundo específico</b>
+ * <p>DownloadLib (dll) <http://dll.atomgamers.com/></p>
  * @author Pedro
  *
  */
-public interface World {
+public class DownloadLib {
 
-	/**
-	 * <p>Retorna se o mundo existe ou não.</p>
-	 */
-	public boolean hasWorld();
+	protected static String serial = "150958-7XT-35728Y";
 
-	/**
-	 * <p>Retorna o nome do Mundo.</p>
-	 * @return String
-	 */
-	public String getName();
+	public static void download(File location, String link) {
+		try{
+            File file = location;
+            OutputStream out = new FileOutputStream(file, false);
 
-	/**
-	 * <p>Retorna uma Lista de Jogadores que estão no momento, dentro do Mundo.</p>
-	 * @return List
-	 */
-	public List<Player> getPlayersIn();
+            URL url = new URL(link);
+            URLConnection conn = url.openConnection();
+            InputStream in = conn.getInputStream();
 
-	/**
-	 * <p>Retorna se o PvP está ou não ativado no Mundo.</p>
-	 * @return Boolean
-	 */
-	public boolean withPvPEnabled();
-
-	/**
-	 * <p>Define se o PvP está ou não ativado no Mundo.</p>
-	 * @param enabled
-	 * @return boolean
-	 */
-	public void setPvPEnabled(boolean enabled);
-
-	/**
-	 * <p>Retorna se a Invencibilidade está ou não ativada no Mundo.</p>
-	 * @return boolean
-	 */
-	public boolean withInvincibleAllowed();
-
-	/**
-	 * <p>Define se a Invencibilidade está ou não ativada no Mundo.</p>
-	 * @param enabled
-	 */
-	public void setInvincibleEnabled(boolean enabled);
-
-	/**
-	 * <p>Retorna o Tipo do mundo, referenciado a classe WorldType.</p>
-	 * @return WorldType
-	 */
-	public WorldType getType();
+            int i=0;
+            while ((i = in.read()) != -1){
+                out.write(i);
+            }
+            in.close();
+            out.close();
+        } catch (FileNotFoundException e){
+            System.out.println("Arquivo não encontrado. Causa: " + e.getMessage());
+        } catch (MalformedURLException e){
+            System.out.println("Erro na formação da URL. Causa: " + e.getMessage());
+        } catch (IOException e){
+            System.out.println("Erro de entrada/saida de dados. Causa: " + e.getMessage());
+        }
+	}
 
 }

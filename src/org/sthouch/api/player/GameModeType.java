@@ -36,65 +36,37 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.world;
-
-import java.util.List;
-
-import org.sthouch.api.player.Player;
+package org.sthouch.api.player;
 
 /**
- * <b>Gerenciamento de Mundos por Mundo específico</b>
- * @author Pedro
- *
+ * <p></b>Aqui é onde fica os tipos de GameMode disponiveis para um jogador.</b></p>
+ * @author GabrielButarelo
+ * @version 1.0
  */
-public interface World {
+public enum GameModeType {
 
 	/**
-	 * <p>Retorna se o mundo existe ou não.</p>
+	 * <p>Esse modo de jogo é o mais utilizado por players, player perde vida, não tem acesso a itens de forma facil a não ser craftando-os.</p>
 	 */
-	public boolean hasWorld();
+	SURVIVAL(0), 
 
 	/**
-	 * <p>Retorna o nome do Mundo.</p>
-	 * @return String
+	 * <p>Esse modo de jogo é o mais utilizado pelos STAFFERS de um servidor, nesse modo de jogo você não morre, não tem fome, tem acesso
+	 * a todos os itens do jogo de forma facil e rapida.</p>
 	 */
-	public String getName();
+	CREATIVE(1),
 
 	/**
-	 * <p>Retorna uma Lista de Jogadores que estão no momento, dentro do Mundo.</p>
-	 * @return List
+	 * <p>Esse modo de jogo é utilizado com mais frequencia por servidores Mini-Game, nesse modo de jogo você não pode quebrar certos itens/blocos
+	 * E está limitado a algumas coisas delimitadas pelo administrador do servidor.</p>
 	 */
-	public List<Player> getPlayersIn();
+	ADVENTURE(2);
 
-	/**
-	 * <p>Retorna se o PvP está ou não ativado no Mundo.</p>
-	 * @return Boolean
-	 */
-	public boolean withPvPEnabled();
-
-	/**
-	 * <p>Define se o PvP está ou não ativado no Mundo.</p>
-	 * @param enabled
-	 * @return boolean
-	 */
-	public void setPvPEnabled(boolean enabled);
-
-	/**
-	 * <p>Retorna se a Invencibilidade está ou não ativada no Mundo.</p>
-	 * @return boolean
-	 */
-	public boolean withInvincibleAllowed();
-
-	/**
-	 * <p>Define se a Invencibilidade está ou não ativada no Mundo.</p>
-	 * @param enabled
-	 */
-	public void setInvincibleEnabled(boolean enabled);
-
-	/**
-	 * <p>Retorna o Tipo do mundo, referenciado a classe WorldType.</p>
-	 * @return WorldType
-	 */
-	public WorldType getType();
+	@SuppressWarnings("unused")
+	private final int GAMEMODE;
+	
+	private GameModeType(final int gamemode){
+		this.GAMEMODE = gamemode;
+	}
 
 }
