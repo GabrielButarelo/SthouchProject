@@ -39,9 +39,9 @@
 package org.sthouch.api.server;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.sthouch.api.player.Player;
+import org.sthouch.api.plugin.Plugin;
 import org.sthouch.api.world.World;
 
 /**
@@ -53,41 +53,48 @@ public interface Server {
 
 	/**
 	 * <p>Marcar o nome do Servidor.</p>
+	 * @author Pedro
 	 * @param name
 	 */
 	public void setServerName(String name);
 
 	/**
 	 * <p>Marcar a Motd do Servidor.</p>
+	 * @author Pedro
 	 * @param motd
 	 */
 	public void setServerMotd(String motd);
 
 	/**
 	 * <p>Marcar se a chuva está ou não permitida.</p>
+	 * @author Pedro
 	 * @param allowed
 	 */
 	public void setStormAllowed(boolean allowed);
 
 	/**
 	 * <p>Efetuar Download de uma versão do Sthouch.</p>
+	 * @author Pedro
 	 * @param version
 	 */
 	public void downloadSthouch(String version);
 
 	/**
 	 * <p>Efetuar Download da ultima versão do Sthouch.</p>
+	 * @author Pedro
 	 */
 	public void downloadLastSthouch();
 
 	/**
 	 * <p>Enviar uma Mensagem no Broadcast.</p>
+	 * @author Pedro
 	 * @param message
 	 */
 	public void broadcast(String message);
 
 	/**
 	 * <p>Banir um Jogador pelo nome dele.</p>
+	 * @author Pedro
 	 * @param player
 	 * @param reason
 	 */
@@ -95,6 +102,7 @@ public interface Server {
 
 	/**
 	 * <p>Banir um Jogador pela variável Player.</p>
+	 * @author Pedro
 	 * @param player
 	 * @param reason
 	 */
@@ -102,18 +110,21 @@ public interface Server {
 
 	/**
 	 * <p>Desbanir um Jogador pelo nome dele.</p>
+	 * @author Pedro
 	 * @param player
 	 */
 	public void unbanPlayer(String player);
 
 	/**
 	 * <p>Desbanir um Jogador pela variável Player.</p>
+	 * @author Pedro
 	 * @param player
 	 */
 	public void unbanPlayer(Player player);
 
 	/**
 	 * <p>Retorna a Variável Player pega pelo nome do Jogador.</p>
+	 * @author Pedro
 	 * @param player
 	 * @return Player
 	 */
@@ -121,6 +132,7 @@ public interface Server {
 
     /**
      * <p>Retorna a Variável World pega pelo Nome dele.</p>
+     * @author Pedro
      * @param world
      * @return
      */
@@ -128,36 +140,42 @@ public interface Server {
 
 	/**
 	 * <p>Retorna a Lista de Jogadores banidos pelo Sistema.</p>
+	 * @author Pedro
 	 * @return List
 	 */
 	public List<Player> getBannedPlayers();
 
 	/**
 	 * <p>Retorna uma Lista de Jogadores que são Operadores (OP).</p>
+	 * @author Pedro
 	 * @return List
 	 */
 	public List<Player> getOperators();
 
     /**
      * <p>Retorna uma Lista de Jogadores que estão na Whitelist.</p>
+     * @author Pedro
      * @return List
      */
 	public List<Player> getPlayersInWhiteList();
 
 	/**
 	 * <p>Retorna a Lista de Jogadores Online no momento.</p>
+	 * @author Pedro
 	 * @return List
 	 */
 	public List<Player> getOnlinePlayers();
 
 	/**
 	 * <p>Retorna a Lista de Mundos existentes.</p>
+	 * @author Pedro
 	 * @return List
 	 */
 	public List<World> getWorlds();
 
 	/**
 	 * <p>Verifica se o Jogador está banido, pelo nome dele.</p>
+	 * @author Pedro
 	 * @param player
 	 * @return boolean
 	 */
@@ -165,6 +183,7 @@ public interface Server {
 
 	/**
 	 * <p>Verifica se o Jogador está banido, pela variável Player.</p>
+	 * @author Pedro
 	 * @param player
 	 * @return boolean
 	 */
@@ -172,44 +191,58 @@ public interface Server {
 
 	/**
 	 * <p>Verifica se há novos updates do Sthouch a serem baixados.</p>
+	 * @author Pedro
 	 * @return boolean
 	 */
 	public Boolean hasSthouchUpdates();
 
 	/**
 	 * <p>Retorna se a Chuva é ou não permitida.</p>
+	 * @author Pedro
 	 * @return boolean
 	 */
 	public Boolean stormAllowed();
 
 	/**
 	 * <p>Retorna com a versão que o Servidor está usando do Sthouch.</p>
+	 * @author Pedro
 	 * @return String
 	 */
 	public String getSthouchVersion();
 
 	/**
 	 * <p>Retorna o Nome do Servidor.</p>
+	 * @author Pedro
 	 * @return String
 	 */
 	public String getServerName();
 
 	/**
 	 * <p>Retorna o IP do Servidor.</p>
+	 * @author Pedro
 	 * @return String
 	 */
 	public String getServerAddress();
 
 	/**
 	 * <p>Retorna o Motd do Servidor.</p>
+	 * @author Pedro
 	 * @return String
 	 */
 	public String getServerMotd();
 
 	/**
 	 * <p>Utilize isto para fazer enviar Log's ao Console.</p>
+	 * @author Pedro
 	 * @return Logger
 	 */
-	public Logger getLog();
+	public Console getConsole();
+
+	/**
+	 * @author Pedro
+	 * @param name
+	 * @return Plugin pego pelo nome
+	 */
+	public Plugin getPlugin(String name);
 
 }

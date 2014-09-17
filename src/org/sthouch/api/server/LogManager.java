@@ -36,40 +36,41 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.world;
+package org.sthouch.api.server;
+
+import java.io.File;
+import java.util.List;
 
 /**
- * <p></b>Aqui é onde fica os tipos de GameMode disponiveis para um jogador.</b></p>
+ * <p><b>Gerenciamento de Logs</b></p>
  * @author Pedro
- * @version 1.0
+ *
  */
-public enum WorldType {
+public interface LogManager {
 
 	/**
-	 * <p>Representa o Mundo normal (Especificado como Id=0).</p>
+	 * <p>Salvar Log's do Cachê para o arquivo.</p>
+	 * @author Pedro
 	 */
-	NORMAL(0), 
+	public void save();
 
 	/**
-	 * <p>Representa o Mundo flatland/superplano (Especificado como Id=1).</p>
+	 * <p>Resetar Logs salvas no Cachê.</p>
+	 * @author Pedro
 	 */
-	REGION(1),
+	public void resetCache();
 
 	/**
-	 * <p>Representa o Mundo The_End/End (Especificado como Id=2).</p>
+	 * @return Lista dos arquivos de Log em forma File.
+	 * @author Pedro
 	 */
-	WORLD_THE_END(2),
+	public List<File> getFilesOfLogs();
 
 	/**
-	 * <p>Representa o Mundo Nether (Especificado como Id=3).</p>
+	 * 
+	 * @return Log atual salvo no Cachê.
+	 * @author Pedro
 	 */
-	WORLD_NETHER(3);
-
-	@SuppressWarnings("unused")
-	private final int GAMEMODE;
-	
-	private WorldType(final int gamemode){
-		this.GAMEMODE = gamemode;
-	}
+	public List<String> getLogsOfCache();
 
 }

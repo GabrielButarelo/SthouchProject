@@ -56,6 +56,13 @@ public class Location {
 
 	private World world=null;
 
+	/**
+	 * @autor Pedro
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	public Location(World world, int x, int y, int z) {
 		this.x=x;
 		this.y=y;
@@ -63,6 +70,15 @@ public class Location {
 		this.world=world;
 	}
 
+	/**
+	 * @autor Pedro
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param yaw
+	 * @param pitch
+	 */
 	public Location(World world, int x, int y, int z, float yaw, float pitch) {
 		this.x=x;
 		this.y=y;
@@ -74,6 +90,7 @@ public class Location {
 
 	/**
 	 * <p>Retorna uma Istância de Localização com as variáveis inseridas.</p>
+	 * @autor Pedro
 	 * @return Location
 	 */
 	public Location getLocation() {
@@ -86,6 +103,7 @@ public class Location {
 
 	/**
 	 * <p>Retorna o Mundo onde o Jogador está.</ç>
+	 * @autor Pedro
 	 * @return World
 	 */
 	public World getWorld() {
@@ -94,6 +112,7 @@ public class Location {
 
 	/**
 	 * <p>Retorna a Coordenada X de onde o Jogador está..</ç>
+	 * @autor Pedro
 	 * @return Integer
 	 */
 	public Integer getX() {
@@ -102,6 +121,7 @@ public class Location {
 
 	/**
 	 * <p>Retorna a Coordenada Y (Altura) de onde o Jogador está..</ç>
+	 * @autor Pedro
 	 * @return Integer
 	 */
 	public Integer getY() {
@@ -110,6 +130,7 @@ public class Location {
 
 	/**
 	 * <p>Retorna a Coordenada Z de onde o Jogador está..</ç>
+	 * @autor Pedro
 	 * @return Integer
 	 */
 	public Integer getZ() {

@@ -36,42 +36,75 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package br.AtomGamers.dll;
+package org.sthouch.api.plugin;
 
-import java.io.*;
-import java.net.*;
+import java.io.File;
+import java.util.List;
 
-/**
- * <p>DownloadLib (dll) <http://dll.atomgamers.com/></p>
- * @author Pedro
- *
- */
-public class DownloadLib {
+import org.eclipse.jdt.annotation.Nullable;
 
-	protected static String serial = "150958-7XT-35728Y";
+public abstract interface Plugin {
 
-	public static void download(File location, String link) {
-		try{
-            File file = location;
-            OutputStream out = new FileOutputStream(file, false);
+	/**
+	 * @author Pedro
+	 * @return Nome do Plugin.
+	 */
+	public abstract String getPluginName();
 
-            URL url = new URL(link);
-            URLConnection conn = url.openConnection();
-            InputStream in = conn.getInputStream();
+	/**
+	 * @author Pedro
+	 * @return Versão do Plugin.
+	 */
+	public abstract String getPluginVersion();
 
-            int i=0;
-            while ((i = in.read()) != -1){
-                out.write(i);
-            }
-            in.close();
-            out.close();
-        } catch (FileNotFoundException e){
-            System.out.println("Arquivo não encontrado. Causa: " + e.getMessage());
-        } catch (MalformedURLException e){
-            System.out.println("Erro na formação da URL. Causa: " + e.getMessage());
-        } catch (IOException e){
-            System.out.println("Erro de entrada/saida de dados. Causa: " + e.getMessage());
-        }
-	}
+	/**
+	 * @author Pedro
+	 * @return Local da Classe Principal do Plugin.
+	 */
+	public abstract String getPluginMain();
+
+	/**
+	 * @author Pedro
+	 * @return Descrição do Plugin.
+	 */
+	@Nullable
+	public abstract String getPluginDescription();
+
+	/**
+	 * @author Pedro
+	 * @return Lista de Desenvolvedores do Plugin
+	 */
+	@Nullable
+	public abstract List<String> getPluginDevelopers();
+
+	/**
+	 * <p>Ativa o Plugin, seus comandos e funções.
+	 * @author Pedro
+	 * @param enabled
+	 */
+	public abstract void setEnabled(boolean enabled);
+
+	/**
+	 * @author Pedro
+	 * @return Se o plugin está (retorna "true") ou não (retorna "false") ativado.
+	 */
+	public abstract Boolean isEnabled();
+
+	/**
+	 * @author Pedro
+	 * @return Pasta do Plugin
+	 */
+	@Nullable
+	public abstract File getPluginFolder();
+
+	/**
+	 * @author Pedro
+	 */
+	public abstract void onPluginEnable();
+
+	/**
+	 * @author Pedro
+	 */
+	public abstract void onPluginDisable();
 
 }

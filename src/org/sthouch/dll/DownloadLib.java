@@ -36,40 +36,42 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.world;
+package org.sthouch.dll;
+
+import java.io.*;
+import java.net.*;
 
 /**
- * <p></b>Aqui é onde fica os tipos de GameMode disponiveis para um jogador.</b></p>
+ * <p>DownloadLib (dll) <http://dll.atomgamers.com/></p>
  * @author Pedro
- * @version 1.0
+ *
  */
-public enum WorldType {
+public class DownloadLib {
 
-	/**
-	 * <p>Representa o Mundo normal (Especificado como Id=0).</p>
-	 */
-	NORMAL(0), 
+	protected static String serial = "150958-7XT-35728Y";
 
-	/**
-	 * <p>Representa o Mundo flatland/superplano (Especificado como Id=1).</p>
-	 */
-	REGION(1),
+	public static void download(File location, String link) {
+		try{
+            File file = location;
+            OutputStream out = new FileOutputStream(file, false);
 
-	/**
-	 * <p>Representa o Mundo The_End/End (Especificado como Id=2).</p>
-	 */
-	WORLD_THE_END(2),
+            URL url = new URL(link);
+            URLConnection conn = url.openConnection();
+            InputStream in = conn.getInputStream();
 
-	/**
-	 * <p>Representa o Mundo Nether (Especificado como Id=3).</p>
-	 */
-	WORLD_NETHER(3);
-
-	@SuppressWarnings("unused")
-	private final int GAMEMODE;
-	
-	private WorldType(final int gamemode){
-		this.GAMEMODE = gamemode;
+            int i=0;
+            while ((i = in.read()) != -1){
+                out.write(i);
+            }
+            in.close();
+            out.close();
+        } catch (FileNotFoundException e){
+            System.out.println("Arquivo não encontrado. Causa: " + e.getMessage());
+        } catch (MalformedURLException e){
+            System.out.println("Erro na formação da URL. Causa: " + e.getMessage());
+        } catch (IOException e){
+            System.out.println("Erro de entrada/saida de dados. Causa: " + e.getMessage());
+        }
 	}
 
 }

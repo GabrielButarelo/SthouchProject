@@ -36,40 +36,35 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.world;
+package org.sthouch.api.server;
 
-/**
- * <p></b>Aqui é onde fica os tipos de GameMode disponiveis para um jogador.</b></p>
- * @author Pedro
- * @version 1.0
- */
-public enum WorldType {
+public interface Console {
 
 	/**
-	 * <p>Representa o Mundo normal (Especificado como Id=0).</p>
+	 * <p>Adicione uma Mensagem no Console, Como Informação.</p>
+	 * @author Pedro
+	 * @param msg
 	 */
-	NORMAL(0), 
+	public void addInfo(String msg);
 
 	/**
-	 * <p>Representa o Mundo flatland/superplano (Especificado como Id=1).</p>
+	 * <p>Adicione uma Mensagem no Console, Como Aviso.</p>
+	 * @author Pedro
+	 * @param msg
 	 */
-	REGION(1),
+	public void addWarn(String msg);
 
 	/**
-	 * <p>Representa o Mundo The_End/End (Especificado como Id=2).</p>
+	 * <p>Adicione uma Mensagem no Console, Como Severo.</p>
+	 * @author Pedro
+	 * @param msg
 	 */
-	WORLD_THE_END(2),
+	public void addSevere(String msg);
 
 	/**
-	 * <p>Representa o Mundo Nether (Especificado como Id=3).</p>
+	 * <p>Adicionar uma Mensagem customizada no Console.</p>
+	 * @author Pedro
 	 */
-	WORLD_NETHER(3);
-
-	@SuppressWarnings("unused")
-	private final int GAMEMODE;
-	
-	private WorldType(final int gamemode){
-		this.GAMEMODE = gamemode;
-	}
+	public void addCustomMessage(String msg);
 
 }

@@ -40,8 +40,9 @@ package org.sthouch;
 
 import java.io.*;
 
+import org.sthouch.dll.*;
+
 import biz.source_code.base64Coder.*;
-import br.AtomGamers.dll.*;
 
 /**
  * <p>Classe Principal do Sthouch Project</p>
