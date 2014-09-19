@@ -40,9 +40,9 @@ package org.sthouch;
 
 import java.io.*;
 
-import org.sthouch.dll.*;
-
 import biz.source_code.base64Coder.*;
+
+import org.sthouch.logger.Logger;
 
 /**
  * <p>Classe Principal do Sthouch Project</p>
@@ -53,6 +53,7 @@ public class SthouchProject {
 
 	public static String version = "";
 	public static File directory = null;
+    private static final Logger logger = new Logger();
 
 	/**
 	 * <p>Mï¿½todo Principal, Inï¿½cio do Projeto</p>
@@ -60,7 +61,9 @@ public class SthouchProject {
 	 * @author Pedro
 	 */
 	public static void main(String[] args) {
+		logger.info("Preparando para Iniciar Sthouch Project 1.5.2-D1");
 		version = "1.2.2D Alpha (1.5.2)";
+
 
 		// START OF PREPARING DIRECTORY
 		directory = new File(".");
@@ -69,7 +72,8 @@ public class SthouchProject {
 		directory = new File(new_dir);
 		// END OF PREPRING DIRECTORY
 
-		start();
+		logger.info("Iniciando Sthouch Project 1.5.2-D1");
+		//start();
 	}
 
 	/**
@@ -86,11 +90,51 @@ public class SthouchProject {
 	 * @author Pedro
 	 */
 	public static void start() {
-		File file = new File(directory + File.separator + "server-plugins");
+		logger.info("Verificando arquivos padrões..");
+		createFiles();
+		logger.info("Arquivos não existentes foram criados!");
+	}
+
+	/**
+	 * 
+	 * @author Pedro
+	 * 
+	 */
+	public final static void buildLicense() {
+		String license = Base64Coder.decodeString(MITLicense.license);
+		File file = new File(getDirectory() + File.separator + "license.txt");
+		try {
+			FileWriter fw = new FileWriter(file);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.println(license);
+			pw.flush();
+			pw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * @return Pegar logger global do SthouchProject
+	 * @author JonathanScripter
+	 * 
+	 */
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    /**
+     * <p>Criar arquivos padrões.</p>
+     * @author Pedro
+     */
+    private static void createFiles() {
+    	File file = new File(directory + File.separator + "server-plugins");
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -101,7 +145,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -111,7 +155,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -121,7 +165,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -131,7 +175,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -145,33 +189,11 @@ public class SthouchProject {
 		file = new File(directory + File.separator + "license.txt");
 		try {
 			file.createNewFile();
-			System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+			logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		copyLicence();
-
-		File download = new File("Sthouch-last.jar");
-		DownloadLib.download(download, "http://dll.atomgamers.com/sthouch/last/Sthouch.jar");
-	}
-
-	/**
-	 * <p>Mï¿½todo para extrair a Licenï¿½a GPLv3 (General Public Licence, Version 3)</p>
-	 * @author Pedro
-	 */
-	private static void copyLicence() {
-		String licence = Base64Coder.decodeString(MITLicense.licence);
-		File file = new File(getDirectory() + File.separator + "license.txt");
-		try {
-			FileWriter fw = new FileWriter(file);
-			PrintWriter pw = new PrintWriter(fw);
-			pw.println(licence);
-			pw.flush();
-			pw.close();
-			fw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+		buildLicense();
+    }
 
 }

@@ -40,8 +40,9 @@ package org.sthouch.api.server;
 
 import java.util.List;
 
+import org.sthouch.api.logs.LogManager;
 import org.sthouch.api.player.Player;
-import org.sthouch.api.plugin.Plugin;
+import org.sthouch.api.plugin.PluginManager;
 import org.sthouch.api.world.World;
 
 /**
@@ -232,17 +233,16 @@ public interface Server {
 	public String getServerMotd();
 
 	/**
-	 * <p>Utilize isto para fazer enviar Log's ao Console.</p>
 	 * @author Pedro
-	 * @return Logger
+	 * @return PluginManager Instance
 	 */
-	public Console getConsole();
+	public PluginManager getPluginManager();
 
 	/**
+	 * 
 	 * @author Pedro
-	 * @param name
-	 * @return Plugin pego pelo nome
+	 * @return LogManager Instance
 	 */
-	public Plugin getPlugin(String name);
+	public LogManager getLogManager();
 
 }

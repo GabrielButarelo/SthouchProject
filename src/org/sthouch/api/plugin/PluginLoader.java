@@ -45,6 +45,7 @@ import java.net.*;
 
 import org.sthouch.SthouchServer;
 import org.sthouch.api.server.Server;
+import org.sthouch.exceptions.PluginLoadException;
 
 /**
  * 
@@ -54,16 +55,16 @@ import org.sthouch.api.server.Server;
 public class PluginLoader {
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
-	public static Plugin loadPlugin(File file) throws ClassNotFoundException {
+	protected static Plugin loadPlugin(File file) throws PluginLoadException {
 		SthouchPlugin sthouch = null;
 		PluginClassLoader pcl = null;
 
 		if (!file.exists()) {
-			throw new NullPointerException("Falha ao tentar carregar o plugin: O Arquivo do JAR não foi encotrado!");
+			throw new PluginLoadException("Falha ao tentar carregar o plugin: O Arquivo do JAR não foi encotrado!");
 		}
 
 		if (!file.getName().endsWith(".jar")) {
-			throw new UnsupportedOperationException("Falha ao tentar carregar o plugin: A Extensão do arquivo não é aceitável!");
+			throw new PluginLoadException("Falha ao tentar carregar o plugin: A Extensão do arquivo não é aceitável!");
 		}
 
 		try {
@@ -78,13 +79,13 @@ public class PluginLoader {
 			try {
 				main = Class.forName("Main", true, pcl);
 			} catch (ClassNotFoundException e) {
-				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Classe 'Main' dentro do Jar, não foi encontrada!");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Classe 'Main' dentro do Jar, não foi encontrada!");
 			}
 
 			Define define = new DefineLoader(main).getAnnotation();
 			Team team = new TeamLoader(main).getAnnotation();
 			if (define == null) {
-				throw new UnsupportedOperationException("Falha ao tentar carregar o plugin: Não foi encontrado o parâmetro de definição @Define");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Não foi encontrado o parâmetro de definição @Define");
 			}
 
 			boolean teamnull = false;
@@ -97,23 +98,23 @@ public class PluginLoader {
 			String pmain = define.main();
 
 			if (pplugin.isEmpty()) {
-				throw new NullPointerException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define plugin=" + '"' + '"' + ")");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define plugin=" + '"' + '"' + ")");
 			}
 
 			if (pversion.isEmpty()) {
-				throw new NullPointerException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define version=" + '"' + '"' + ")");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define version=" + '"' + '"' + ")");
 			}
 
 			if (pmain.isEmpty()) {
-				throw new NullPointerException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define main=" + '"' + '"' + ")");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define main=" + '"' + '"' + ")");
 			}
 
 			try {
 				principal = Class.forName(pmain, true, pcl);
 			} catch (ClassNotFoundException e) {
-				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Classe principal definida não encontrada!");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Classe principal definida não encontrada!");
 			} catch (Exception e) {
-				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Erro ao tentar pegar a classe Principal definida!");
+				throw new PluginLoadException("Falha ao tentar carregar o plugin: Erro ao tentar pegar a classe Principal definida!");
 			}
 
 			Class c = null;
@@ -123,13 +124,15 @@ public class PluginLoader {
 			sthouch = (SthouchPlugin)constructor.newInstance(new Object[0]);
 
 			Server server = new SthouchServer();
-			sthouch.buildPlugin(pplugin, server, principal);
 
-			ModData md = new ModData(pplugin);
-			md.setMainClass(principal);
-			md.setVersion(pversion);;
-			if (teamnull == false) md.setDevelopers(team.developers());
-		} catch (MalformedURLException | ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			if (teamnull == true) {
+				sthouch.buildPlugin(pplugin, pversion, new String[] {"Unknown"}, server, pmain, principal);
+			} else {
+				sthouch.buildPlugin(pplugin, pversion, team.developers(), server, pmain, principal);
+			}
+
+			PluginManager.plugins.put(pplugin.toLowerCase(), sthouch);
+		} catch (MalformedURLException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 			return null;
 		}

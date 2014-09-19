@@ -39,16 +39,15 @@
 package org.sthouch.api.world;
 
 /**
- * <p></b>Aqui é onde fica os tipos de GameMode disponiveis para um jogador.</b></p>
+ * <p>Aqui é onde fica os tipos de GameMode disponiveis para um jogador.</p>
  * @author Pedro
- * @version 1.0
  */
 public enum WorldType {
 
 	/**
 	 * <p>Representa o Mundo normal (Especificado como Id=0).</p>
 	 */
-	NORMAL(0), 
+	NORMAL(0),
 
 	/**
 	 * <p>Representa o Mundo flatland/superplano (Especificado como Id=1).</p>
@@ -65,11 +64,13 @@ public enum WorldType {
 	 */
 	WORLD_NETHER(3);
 
-	@SuppressWarnings("unused")
-	private final int GAMEMODE;
-	
-	private WorldType(final int gamemode){
-		this.GAMEMODE = gamemode;
+	private final int WORLD;
+	private WorldType(final int world){
+		this.WORLD = world;
+	}
+
+	public int getId() {
+		return WORLD;
 	}
 
 }

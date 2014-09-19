@@ -36,69 +36,49 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.plugin;
+package org.sthouch.downloader;
 
-import java.io.File;
+import java.io.*;
+import java.net.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+import org.sthouch.exceptions.DownloadFailedException;
 
 /**
  * 
  * @author Pedro
- *
+ * 
  */
-@SuppressWarnings("rawtypes")
-public abstract interface Plugin {
+public class Download {
 
-	/**
-	 * @author Pedro
-	 * @return Nome do Plugin
-	 */
-	public abstract String getPluginName();
+	private String download = "";
 
-	/**
-	 * @author Pedro
-	 * @return Versão do Plugin.
-	 */
-	public abstract String getVersion();
+	public Download(String url) {
+		this.download=url;
+	}
 
-	/**
-	 * @author Pedro
-	 * @return Desenvolvedores do Plugin.
-	 */
-	@Nullable
-	public abstract String[] getDevelopers();
+	public void process(File location) throws DownloadFailedException {
+		try {
+            File file = location;
+            OutputStream out = new FileOutputStream(file, false);
 
-	/**
-	 * @author Pedro
-	 * @return Localização da Classe principal do plugin.
-	 */
-	public abstract String getMainClassLocation();
+            URL url = new URL(download);
+            URLConnection conn = url.openConnection();
+            InputStream in = conn.getInputStream();
 
-	/**
-	 * @author Pedro
-	 * @return Classe principal do plugin.
-	 */
-	@Nullable
-	public abstract Class getMainClass();
+            int i=0;
+            while ((i = in.read()) != -1){
+                out.write(i);
+            }
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
-
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
-
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+            in.close();
+            out.close();
+        } catch (FileNotFoundException e){
+        	throw new DownloadFailedException("Arquivo não encontrado #" + e.getMessage());
+        } catch (MalformedURLException e){
+            throw new DownloadFailedException("Falha na Formação do URL #" + e.getMessage());
+        } catch (IOException e){
+            throw new DownloadFailedException("Falha na Transmissão de dados #" + e.getMessage());
+        }
+	}
 
 }

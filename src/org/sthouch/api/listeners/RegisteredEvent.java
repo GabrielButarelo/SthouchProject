@@ -49,6 +49,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RegisteredEvent {
 
-    public boolean continueCanelled = false;
+    public boolean continueCanelled() default true;
 
 }

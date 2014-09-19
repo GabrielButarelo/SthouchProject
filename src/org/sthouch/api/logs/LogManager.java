@@ -36,69 +36,44 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.plugin;
+package org.sthouch.api.logs;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.jdt.annotation.Nullable;
+import org.sthouch.SthouchProject;
 
 /**
- * 
+ * <p><b>Gerenciamento de Logs</b></p>
  * @author Pedro
  *
  */
-@SuppressWarnings("rawtypes")
-public abstract interface Plugin {
+public class LogManager {
 
 	/**
+	 * @return Lista dos arquivos de Log em forma File.
 	 * @author Pedro
-	 * @return Nome do Plugin
 	 */
-	public abstract String getPluginName();
+	public List<File> getFiles() {
+		List<File> files = new ArrayList<>();
+
+		for (File file : new File(SthouchProject.getDirectory(), "Logs").listFiles()) {
+			if (file.getName().toLowerCase().endsWith(".jar")) {
+				files.add(file);
+			}
+		}
+
+		return files;
+	}
 
 	/**
-	 * @author Pedro
-	 * @return Versão do Plugin.
-	 */
-	public abstract String getVersion();
-
-	/**
-	 * @author Pedro
-	 * @return Desenvolvedores do Plugin.
-	 */
-	@Nullable
-	public abstract String[] getDevelopers();
-
-	/**
-	 * @author Pedro
-	 * @return Localização da Classe principal do plugin.
-	 */
-	public abstract String getMainClassLocation();
-
-	/**
-	 * @author Pedro
-	 * @return Classe principal do plugin.
-	 */
-	@Nullable
-	public abstract Class getMainClass();
-
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
-
-	/**
+	 * 
+	 * @return Log atual salvo no Cachê.
 	 * @author Pedro
 	 */
-	@Nullable
-	public abstract void onPluginEnable();
-
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+	public LogCache getCache() {
+		return new LogCache();
+	}
 
 }

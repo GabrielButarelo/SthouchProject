@@ -52,24 +52,31 @@ import org.sthouch.api.server.Server;
 @SuppressWarnings({"rawtypes"})
 public class SthouchPlugin implements Plugin {
 
-	private String plugin = "";
-	private File folder = null;
 	private Server server = null;
-	private boolean loaded = false;
+
+	private String[] developers = {};
+	private String plugin = "";
+	private String clazzUrl = "";
+	private String version = "";
+
+	private File folder = null;
 	private Class main = null;
+
+	private boolean loaded = false;
 
 	/**
 	 * @author Pedro
 	 * @param plugin Nome do plugin
 	 * @param server Instância da classe 'Server'
 	 */
-	protected void buildPlugin(String plugin, Server server, Class clazz) {
+	protected void buildPlugin(String plugin, String version, String[] developers, Server server, String clazzUrl, Class clazz) {
 		if (loaded) return;
 
 		this.loaded=true;
 		this.server=server;
 		this.plugin=plugin;
 		this.main=clazz;
+		this.developers=developers;
 
 		//START BUILD PLUGIN FOLDER;
 		File directory = new File(SthouchProject.getDirectory(), plugin);
@@ -109,6 +116,22 @@ public class SthouchPlugin implements Plugin {
 	@Nullable
 	public final Class getMainClass() {
 		return main;
+	}
+
+	@Override
+	public final String getVersion() {
+		return version;
+	}
+
+	@Override
+	public final String getMainClassLocation() {
+		return clazzUrl;
+	}
+
+	@Override
+	@Nullable
+	public String[] getDevelopers() {
+		return developers;
 	}
 
 }
