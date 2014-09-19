@@ -1,37 +1,37 @@
 /*
  * 
-  * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que estï¿½ Licenciado com a MIT Licence (MIT).
+  * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
   * 
   * Copyright (C) 2014 <http://www.sthouch.org/ e contribuidores (Contribuidores do Projeto)>
   * 
-  * A permissï¿½o ï¿½ concedida, a tï¿½tulo gratuito, a qualquer pessoa que obtenha uma cï¿½pia
-  * deste software e arquivos de documentaï¿½ï¿½o associados (o "Software"), para negociar
-  * o Software sem restriï¿½ï¿½o, incluindo, sem limitaï¿½ï¿½o, os direitos
+  * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
+  * deste software e arquivos de documentação associados (o "Software"), para negociar
+  * o Software sem restrição, incluindo, sem limitação, os direitos
   * para usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender
-  * cï¿½pias do Software, e permitir que as pessoas a quem o Software ï¿½
-  * fornecido faï¿½am isso, sujeito ï¿½s seguintes condiï¿½ï¿½es:
+  * cópias do Software, e permitir que as pessoas a quem o Software é
+  * fornecido façam isso, sujeito às seguintes condições:
   *
   * ---------
   *
-  * O aviso de copyright acima, os avisos abaixo, e este aviso de permissï¿½o devem ser incluï¿½dos em todas as cï¿½pias ou partes 
+  * O aviso de copyright acima, os avisos abaixo, e este aviso de permissão devem ser incluídos em todas as cópias ou partes 
   * substanciais do Software, obrigatoriamente;
   * 
-  * Os Nome(s) dos detentores de direitos autorais acima deverï¿½ nï¿½o poder ser usado em publicidade ou de outra forma para promover
-  * a venda, uso ou outras negociaï¿½ï¿½es em Este Software sem autorizaï¿½ï¿½o prï¿½via por escrito, do Lï¿½der do Projeto.
+  * Os Nome(s) dos detentores de direitos autorais acima deverá não poder ser usado em publicidade ou de outra forma para promover
+  * a venda, uso ou outras negociações em Este Software sem autorização prévia por escrito, do Líder do Projeto.
   * 
-  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), ï¿½/sï¿½o aquele/aqueles que fazem, ou, por sua vez,
-  * fizeram parte da equipe oficial, sendo assim entï¿½o ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
-  * Contribuï¿½ntes e Desenvolvedores do mesmo. Qualquer outro usuï¿½rio que, por sua vez, nï¿½o seja/esteja dentro/participando da
-  * equipe oficial, ou nunca tenha participado oficialmente da equipe, nï¿½o tem direitos como "contribuidores" ou "contribuinte" do
+  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), é/são aquele/aqueles que fazem, ou, por sua vez,
+  * fizeram parte da equipe oficial, sendo assim então ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
+  * Contribuíntes e Desenvolvedores do mesmo. Qualquer outro usuário que, por sua vez, não seja/esteja dentro/participando da
+  * equipe oficial, ou nunca tenha participado oficialmente da equipe, não tem direitos como "contribuidores" ou "contribuinte" do
   * projeto Sthouch (ou Sthouch Project).
   * 
   * ---------
   * 
-  * O SOFTWARE ï¿½ FORNECIDO "COMO ESTï¿½", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLï¿½CITA, INCLUINDO, SEM LIMITAï¿½ï¿½O, 
-  * AS GARANTIAS DE COMERCIALIZAï¿½ï¿½O,ADEQUAï¿½ï¿½O A UM DETERMINADO FIM E Nï¿½O VIOLAï¿½ï¿½O.
-  * EM NENHUM CASO A AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERï¿½ RESPONSï¿½VEL POR QUALQUER RECLAMAï¿½ï¿½O, DANOS OU OUTRAS
-  * RESPONSABILIDADE, SEJA EM UMA Aï¿½ï¿½O DE CUMPRIMENTO DE CONTRATO OU QUALQUER OUTRO MEIO, DE OU EM CONEXï¿½O COM O SOFTWARE OU O 
-  * USO OU OUTRAS NEGOCIAï¿½ï¿½ES O SOFTWARE.
+  * O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, SEM LIMITAÇÃO, 
+  * AS GARANTIAS DE COMERCIALIZAÇÃO,ADEQUAÇÃO A UM DETERMINADO FIM E NÃO VIOLAÇÃO.
+  * EM NENHUM CASO A AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERÁ RESPONSÁVEL POR QUALQUER RECLAMAÇÃO, DANOS OU OUTRAS
+  * RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CUMPRIMENTO DE CONTRATO OU QUALQUER OUTRO MEIO, DE OU EM CONEXÃO COM O SOFTWARE OU O 
+  * USO OU OUTRAS NEGOCIAÇÕES O SOFTWARE.
   * 
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
@@ -59,11 +59,11 @@ public class PluginLoader {
 		PluginClassLoader pcl = null;
 
 		if (!file.exists()) {
-			throw new NullPointerException("Falha ao tentar carregar o plugin: O Arquivo do JAR nï¿½o foi encotrado!");
+			throw new NullPointerException("Falha ao tentar carregar o plugin: O Arquivo do JAR não foi encotrado!");
 		}
 
 		if (!file.getName().endsWith(".jar")) {
-			throw new UnsupportedOperationException("Falha ao tentar carregar o plugin: A Extensï¿½o do arquivo nï¿½o ï¿½ aceitï¿½vel!");
+			throw new UnsupportedOperationException("Falha ao tentar carregar o plugin: A Extensão do arquivo não é aceitável!");
 		}
 
 		try {
@@ -78,13 +78,13 @@ public class PluginLoader {
 			try {
 				main = Class.forName("Main", true, pcl);
 			} catch (ClassNotFoundException e) {
-				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Classe 'Main' dentro do Jar, nï¿½o foi encontrada!");
+				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Classe 'Main' dentro do Jar, não foi encontrada!");
 			}
 
 			Define define = new DefineLoader(main).getAnnotation();
 			Team team = new TeamLoader(main).getAnnotation();
 			if (define == null) {
-				throw new UnsupportedOperationException("Falha ao tentar carregar o plugin: Nï¿½o foi encontrado o parï¿½metro de definiï¿½ï¿½o @Define");
+				throw new UnsupportedOperationException("Falha ao tentar carregar o plugin: Não foi encontrado o parâmetro de definição @Define");
 			}
 
 			boolean teamnull = false;
@@ -97,21 +97,21 @@ public class PluginLoader {
 			String pmain = define.main();
 
 			if (pplugin.isEmpty()) {
-				throw new NullPointerException("Falha ao tentar carregar o plugin: Parï¿½metro vazio em @Define plugin=" + '"' + '"' + ")");
+				throw new NullPointerException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define plugin=" + '"' + '"' + ")");
 			}
 
 			if (pversion.isEmpty()) {
-				throw new NullPointerException("Falha ao tentar carregar o plugin: Parï¿½metro vazio em @Define version=" + '"' + '"' + ")");
+				throw new NullPointerException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define version=" + '"' + '"' + ")");
 			}
 
 			if (pmain.isEmpty()) {
-				throw new NullPointerException("Falha ao tentar carregar o plugin: Parï¿½metro vazio em @Define main=" + '"' + '"' + ")");
+				throw new NullPointerException("Falha ao tentar carregar o plugin: Parâmetro vazio em @Define main=" + '"' + '"' + ")");
 			}
 
 			try {
 				principal = Class.forName(pmain, true, pcl);
 			} catch (ClassNotFoundException e) {
-				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Classe principal definida nï¿½o encontrada!");
+				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Classe principal definida não encontrada!");
 			} catch (Exception e) {
 				throw new ClassNotFoundException("Falha ao tentar carregar o plugin: Erro ao tentar pegar a classe Principal definida!");
 			}
@@ -123,7 +123,7 @@ public class PluginLoader {
 			sthouch = (SthouchPlugin)constructor.newInstance(new Object[0]);
 
 			Server server = new SthouchServer();
-			sthouch.buildPlugin(pplugin, server);
+			sthouch.buildPlugin(pplugin, server, principal);
 
 			ModData md = new ModData(pplugin);
 			md.setMainClass(principal);

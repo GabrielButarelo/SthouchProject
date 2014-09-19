@@ -1,37 +1,37 @@
 /*
  * 
-  * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que estï¿½ Licenciado com a MIT Licence (MIT).
+  * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
   * 
   * Copyright (C) 2014 <http://www.sthouch.org/ e contribuidores (Contribuidores do Projeto)>
   * 
-  * A permissï¿½o ï¿½ concedida, a tï¿½tulo gratuito, a qualquer pessoa que obtenha uma cï¿½pia
-  * deste software e arquivos de documentaï¿½ï¿½o associados (o "Software"), para negociar
-  * o Software sem restriï¿½ï¿½o, incluindo, sem limitaï¿½ï¿½o, os direitos
+  * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
+  * deste software e arquivos de documentação associados (o "Software"), para negociar
+  * o Software sem restrição, incluindo, sem limitação, os direitos
   * para usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender
-  * cï¿½pias do Software, e permitir que as pessoas a quem o Software ï¿½
-  * fornecido faï¿½am isso, sujeito ï¿½s seguintes condiï¿½ï¿½es:
+  * cópias do Software, e permitir que as pessoas a quem o Software é
+  * fornecido façam isso, sujeito às seguintes condições:
   *
   * ---------
   *
-  * O aviso de copyright acima, os avisos abaixo, e este aviso de permissï¿½o devem ser incluï¿½dos em todas as cï¿½pias ou partes 
+  * O aviso de copyright acima, os avisos abaixo, e este aviso de permissão devem ser incluídos em todas as cópias ou partes 
   * substanciais do Software, obrigatoriamente;
   * 
-  * Os Nome(s) dos detentores de direitos autorais acima deverï¿½ nï¿½o poder ser usado em publicidade ou de outra forma para promover
-  * a venda, uso ou outras negociaï¿½ï¿½es em Este Software sem autorizaï¿½ï¿½o prï¿½via por escrito, do Lï¿½der do Projeto.
+  * Os Nome(s) dos detentores de direitos autorais acima deverá não poder ser usado em publicidade ou de outra forma para promover
+  * a venda, uso ou outras negociações em Este Software sem autorização prévia por escrito, do Líder do Projeto.
   * 
-  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), ï¿½/sï¿½o aquele/aqueles que fazem, ou, por sua vez,
-  * fizeram parte da equipe oficial, sendo assim entï¿½o ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
-  * Contribuï¿½ntes e Desenvolvedores do mesmo. Qualquer outro usuï¿½rio que, por sua vez, nï¿½o seja/esteja dentro/participando da
-  * equipe oficial, ou nunca tenha participado oficialmente da equipe, nï¿½o tem direitos como "contribuidores" ou "contribuinte" do
+  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), é/são aquele/aqueles que fazem, ou, por sua vez,
+  * fizeram parte da equipe oficial, sendo assim então ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
+  * Contribuíntes e Desenvolvedores do mesmo. Qualquer outro usuário que, por sua vez, não seja/esteja dentro/participando da
+  * equipe oficial, ou nunca tenha participado oficialmente da equipe, não tem direitos como "contribuidores" ou "contribuinte" do
   * projeto Sthouch (ou Sthouch Project).
   * 
   * ---------
   * 
-  * O SOFTWARE ï¿½ FORNECIDO "COMO ESTï¿½", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLï¿½CITA, INCLUINDO, SEM LIMITAï¿½ï¿½O, 
-  * AS GARANTIAS DE COMERCIALIZAï¿½ï¿½O,ADEQUAï¿½ï¿½O A UM DETERMINADO FIM E Nï¿½O VIOLAï¿½ï¿½O.
-  * EM NENHUM CASO A AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERï¿½ RESPONSï¿½VEL POR QUALQUER RECLAMAï¿½ï¿½O, DANOS OU OUTRAS
-  * RESPONSABILIDADE, SEJA EM UMA Aï¿½ï¿½O DE CUMPRIMENTO DE CONTRATO OU QUALQUER OUTRO MEIO, DE OU EM CONEXï¿½O COM O SOFTWARE OU O 
-  * USO OU OUTRAS NEGOCIAï¿½ï¿½ES O SOFTWARE.
+  * O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, SEM LIMITAÇÃO, 
+  * AS GARANTIAS DE COMERCIALIZAÇÃO,ADEQUAÇÃO A UM DETERMINADO FIM E NÃO VIOLAÇÃO.
+  * EM NENHUM CASO A AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERÁ RESPONSÁVEL POR QUALQUER RECLAMAÇÃO, DANOS OU OUTRAS
+  * RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CUMPRIMENTO DE CONTRATO OU QUALQUER OUTRO MEIO, DE OU EM CONEXÃO COM O SOFTWARE OU O 
+  * USO OU OUTRAS NEGOCIAÇÕES O SOFTWARE.
   * 
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
@@ -49,25 +49,27 @@ import org.sthouch.api.server.Server;
  * @author Pedro
  *
  */
+@SuppressWarnings({"rawtypes"})
 public class SthouchPlugin implements Plugin {
 
-	@SuppressWarnings("unused")
 	private String plugin = "";
 	private File folder = null;
 	private Server server = null;
 	private boolean loaded = false;
+	private Class main = null;
 
 	/**
 	 * @author Pedro
 	 * @param plugin Nome do plugin
-	 * @param server Instï¿½ncia da classe 'Server'
+	 * @param server Instância da classe 'Server'
 	 */
-	protected void buildPlugin(String plugin, Server server) {
+	protected void buildPlugin(String plugin, Server server, Class clazz) {
 		if (loaded) return;
 
 		this.loaded=true;
 		this.server=server;
 		this.plugin=plugin;
+		this.main=clazz;
 
 		//START BUILD PLUGIN FOLDER;
 		File directory = new File(SthouchProject.getDirectory(), plugin);
@@ -75,6 +77,11 @@ public class SthouchPlugin implements Plugin {
 		//END BUILD PLUGIN FOLDER;
 	}
 
+	/**
+	 * 
+	 * @return Instância da Classe Server
+	 * @see org.sthouch.api.server.Server
+	 */
 	public Server getServer() {
 		return server;
 	}
@@ -92,5 +99,16 @@ public class SthouchPlugin implements Plugin {
 	@Override
 	@Nullable
 	public void onPluginDisable() {}
+
+	@Override
+	public final String getPluginName() {
+		return plugin;
+	}
+
+	@Override
+	@Nullable
+	public final Class getMainClass() {
+		return main;
+	}
 
 }
