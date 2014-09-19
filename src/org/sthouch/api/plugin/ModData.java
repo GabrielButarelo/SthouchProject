@@ -38,34 +38,63 @@
 
 package org.sthouch.api.plugin;
 
-import java.io.File;
-
-import org.eclipse.jdt.annotation.Nullable;
+import java.util.*;
 
 /**
  * 
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+@SuppressWarnings("rawtypes")
+public class ModData {
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
+	private static List<String> data = new ArrayList<>();
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
+	private Class main = null;
+	private String plugin = "";
+	private String version = "";
+	private String[] developers = new String[100];
+	private Boolean alreadyexists = false;
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+	public ModData(String plugin) {
+		this.plugin=plugin;
+		if (data.contains(plugin)) {
+			alreadyexists=true;
+		} else {
+			alreadyexists=false;
+		}
+	}
+
+	public boolean alreadyExists() {
+		return alreadyexists;
+	}
+
+	public Class getMainClass() {
+		return main;
+	}
+
+	public String[] getDevelopers() {
+		return developers;
+	}
+
+	public String getName() {
+		return plugin;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setMainClass(Class c) {
+		this.main=c;
+	}
+
+	public void setVersion(String version) {
+		this.version=version;
+	}
+
+	public void setDevelopers(String[] list) {
+		developers = list;
+	}
 
 }

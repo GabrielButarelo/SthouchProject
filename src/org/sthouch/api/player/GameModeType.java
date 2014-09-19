@@ -2,7 +2,7 @@
  * 
   * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
   * 
-  * Copyright (C) 2014 <http://www.sthouch.org/ e contribuidores (Contribuidores do Projeto)>
+  * Copyright (C) 2014 Sthouch Team <http://www.sthouch.org/ e contribuidores>
   * 
   * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
   * deste software e arquivos de documentação associados (o "Software"), para negociar

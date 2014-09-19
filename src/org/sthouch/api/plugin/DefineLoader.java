@@ -38,8 +38,6 @@
 
 package org.sthouch.api.plugin;
 
-import java.io.File;
-
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
@@ -47,25 +45,18 @@ import org.eclipse.jdt.annotation.Nullable;
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+@SuppressWarnings({ "unchecked", "rawtypes"})
+public class DefineLoader {
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
+	private Class target = null;
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
+	public DefineLoader(Class target) {
+		this.target=target;
+	}
 
-	/**
-	 * @author Pedro
-	 */
 	@Nullable
-	public abstract void onPluginDisable();
+	public <T> T getAnnotation() {
+        return (T) target.getAnnotation(Define.class);
+    }
 
 }

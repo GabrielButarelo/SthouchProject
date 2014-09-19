@@ -38,34 +38,19 @@
 
 package org.sthouch.api.plugin;
 
-import java.io.File;
-
-import org.eclipse.jdt.annotation.Nullable;
+import java.lang.annotation.*;
 
 /**
  * 
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+@Target({java.lang.annotation.ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Define {
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
-
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
-
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+	public String plugin();
+	public String version();
+	public String main();
 
 }

@@ -2,7 +2,7 @@
  * 
   * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
   * 
-  * Copyright (C) 2014 <http://www.sthouch.org/ e contribuidores (Contribuidores do Projeto)>
+  * Copyright (C) 2014 Sthouch Team <http://www.sthouch.org/ e contribuidores>
   * 
   * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
   * deste software e arquivos de documentação associados (o "Software"), para negociar
@@ -36,36 +36,156 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.plugin;
+package org.sthouch;
 
-import java.io.File;
+import java.util.List;
 
-import org.eclipse.jdt.annotation.Nullable;
+import org.sthouch.api.player.Player;
+import org.sthouch.api.plugin.Plugin;
+import org.sthouch.api.server.Console;
+import org.sthouch.api.server.Server;
+import org.sthouch.api.world.World;
 
 /**
  * 
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+public class SthouchServer implements Server {
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
+	@Override
+	public void setServerName(String name) {
+		
+	}
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
+	@Override
+	public void setServerMotd(String motd) {
+		
+	}
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+	@Override
+	public void setStormAllowed(boolean allowed) {
+		
+	}
+
+	@Override
+	public void downloadSthouch(String version) {
+		
+	}
+
+	@Override
+	public void downloadLastSthouch() {
+		
+	}
+
+	@Override
+	public void broadcast(String message) {
+		
+	}
+
+	@Override
+	public void banPlayer(String player, String reason) {
+		
+	}
+
+	@Override
+	public void banPlayer(Player player, String reason) {
+		
+	}
+
+	@Override
+	public void unbanPlayer(String player) {
+		
+	}
+
+	@Override
+	public void unbanPlayer(Player player) {
+		
+	}
+
+	@Override
+	public Player getPlayerByName(String player) {
+		return null;
+	}
+
+	@Override
+	public World getWorldByName(String world) {
+		return null;
+	}
+
+	@Override
+	public List<Player> getBannedPlayers() {
+		return null;
+	}
+
+	@Override
+	public List<Player> getOperators() {
+		return null;
+	}
+
+	@Override
+	public List<Player> getPlayersInWhiteList() {
+		return null;
+	}
+
+	@Override
+	public List<Player> getOnlinePlayers() {
+		return null;
+	}
+
+	@Override
+	public List<World> getWorlds() {
+		return null;
+	}
+
+	@Override
+	public Boolean isBanned(String player) {
+		return null;
+	}
+
+	@Override
+	public Boolean isBanned(Player player) {
+		return null;
+	}
+
+	@Override
+	public Boolean hasSthouchUpdates() {
+		return null;
+	}
+
+	@Override
+	public Boolean stormAllowed() {
+		return null;
+	}
+
+	@Override
+	public String getSthouchVersion() {
+		return null;
+	}
+
+	@Override
+	public String getServerName() {
+		return null;
+	}
+
+	@Override
+	public String getServerAddress() {
+		return null;
+	}
+
+	@Override
+	public String getServerMotd() {
+		return null;
+	}
+
+	@Override
+	public Console getConsole() {
+		return null;
+	}
+
+	@Override
+	public Plugin getPlugin(String name) {
+		return null;
+	}
 
 }

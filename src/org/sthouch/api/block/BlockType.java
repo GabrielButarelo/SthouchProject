@@ -2,7 +2,7 @@
  * 
   * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
   * 
-  * Copyright (C) 2014 <http://www.sthouch.org/ e contribuidores (Contribuidores do Projeto)>
+  * Copyright (C) 2014 Sthouch Team <http://www.sthouch.org/ e contribuidores>
   * 
   * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
   * deste software e arquivos de documentação associados (o "Software"), para negociar
@@ -36,36 +36,169 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.api.plugin;
-
-import java.io.File;
-
-import org.eclipse.jdt.annotation.Nullable;
+package org.sthouch.api.block;
 
 /**
  * 
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+public enum BlockType {
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
+	AIR(0),
+	NULL(0),
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
+	STONE(1),
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+	GRASS(2),
+	DIRT(3),
+
+	COBBLESTONE(4),
+
+	WOODEN_OAK(5, 0),
+	WOODEN_SPRUCE(5, 1),
+	WOODEN_BIRCH(5, 2),
+	WOODEN_JUNGLE(5, 3),
+
+	SAPPLING_OAK(6, 0),
+	SAPPLING_SPRUCE(6, 1),
+	SAPPLING_BIRCH(6, 2),
+	SAPPLING_JUNGLE(6, 3),
+
+	BEDROCK(7),
+
+	WATER(8),
+	WATER_BLOCK(9),
+
+	LAVA(10),
+	LAVA_BLOCK(11),
+
+	SAND(12),
+	GRAVEL(13),
+
+	GOLD_ORE(14),
+	IRON_ORE(15),
+	COAL_ORE(16),
+
+	LOG_OAK(17, 0),
+	LOG_SPRUCE(17, 0),
+	LOG_BIRCH(17, 0),
+	LOG_JUNGLE(17, 0),
+
+	LEAVES_OAK(18, 0),
+	LEAVES_SPRUCE(18, 1),
+	LEAVES_BIRCH(18, 2),
+	LEAVES_JUNGLE(18, 3),
+
+	SPONGE(19),
+
+	GLASS(20),
+
+	LAPIS_LAZULI_ORE(21),
+	LAPIS_LAZULI_BLOCK(22),
+
+	DISPENSER(23),
+
+	WEB(30),
+
+	WOOL(35),
+	WOOL_WHITE(35, 0),
+	WOOL_ORANGE(35, 1),
+	WOOL_MAGENTA(35, 2),
+	WOOL_LIGHT_BLUE(35, 3),
+	WOOL_YELLOW(35, 4),
+	WOOL_LIGHT_GREEN(35, 5),
+	WOOL_PINK(35, 6),
+	WOOL_DARK_GRAY(35, 7),
+	WOOL_GRAY(35, 8),
+	WOOL_CYAN(35, 9),
+	WOOL_PURPLE(35, 10),
+	WOOL_BLUE(35, 11),
+	WOOL_BROWN(35, 12),
+	WOOL_DARK_GREEN(35, 13),
+	WOOL_RED(35, 14),
+	WOOL_BLACK(35, 15),
+
+	GOLD_BLOCK(41),
+	IRON_BLOCK(42),
+
+	MOBSPAWNER_BLOCK(52, 0),
+
+	TNT(45),
+	BOOKSELF(46),
+	MOSS_STONE(47),
+	OBSIDIAN(48),
+	TORCH(49),
+	FIRE(51),
+	CHEST(54),
+	WORKBENCH(58),
+	FURNACE(61),
+
+	SNOW_BLOCK(80),
+	SNOW_CARPET(78),
+	ICE(79),
+
+	SUGAR_CANE(86),
+
+	JUKEBOX(84),
+	NETHER_RACK(87),
+	SOUL_SAND(88),
+
+	GLOWSTONE(89),
+
+	NETHER_PORTAL_BLOCK(90),
+
+	STONE_BRICK(98, 0),
+
+	MELON_BLOCK(103),
+
+	MICELIUM(110),
+	NETHER_BLOCK(112),
+
+	ENCHANTMENT_TABLE(116),
+	BRUWING_STAND(117),
+
+	NETHER_PORTAL(119),
+
+	REDSTONE_LAMP(123),
+	REDSTONE_LAMP_OFF(123),
+	REDSTONE_LAMP_ON(124),
+
+	ENDER_CHEST(130),
+
+	EMERALD_BLOCK(133),
+
+	ANVIL(145),
+
+	REDSTONE_BLOCK(152),
+	QUARTZ_ORE(153),
+	DROPPER(154);
+
+	private int id = 0;
+	private int data = 0;
+
+	private BlockType() {};
+
+	private BlockType(final int id, final int data){
+		this.id = id;
+		this.data = data;
+	};
+
+	private BlockType(final int id){
+		this.id = id;
+		this.data = 0;
+	};
+
+	public void setNewData(int data) {
+		this.data=data;
+	};
+
+	public int getBlockId() {
+		return id;
+	};
+
+	public int getBlockData() {
+		return data;
+	};
 
 }

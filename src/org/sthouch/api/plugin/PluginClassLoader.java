@@ -38,34 +38,21 @@
 
 package org.sthouch.api.plugin;
 
-import java.io.File;
-
-import org.eclipse.jdt.annotation.Nullable;
+import java.net.*;
 
 /**
  * 
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+public class PluginClassLoader extends URLClassLoader {
 
-	/**
-	 * @author Pedro
-	 * @return Pasta do Plugin
-	 */
-	@Nullable
-	public abstract File getPluginFolder();
+	@SuppressWarnings("unused")
+	private PluginLoader pl = null;
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
-
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginDisable();
+	public PluginClassLoader(PluginLoader pl, URL[] urls, ClassLoader cl) {
+		super(urls, cl);
+		this.pl=pl;
+	}
 
 }

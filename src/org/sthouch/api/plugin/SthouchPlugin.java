@@ -41,31 +41,56 @@ package org.sthouch.api.plugin;
 import java.io.File;
 
 import org.eclipse.jdt.annotation.Nullable;
+import org.sthouch.SthouchProject;
+import org.sthouch.api.server.Server;
 
 /**
  * 
  * @author Pedro
  *
  */
-public abstract interface Plugin {
+public class SthouchPlugin implements Plugin {
+
+	@SuppressWarnings("unused")
+	private String plugin = "";
+	private File folder = null;
+	private Server server = null;
+	private boolean loaded = false;
 
 	/**
 	 * @author Pedro
-	 * @return Pasta do Plugin
+	 * @param plugin Nome do plugin
+	 * @param server Instância da classe 'Server'
 	 */
-	@Nullable
-	public abstract File getPluginFolder();
+	protected void buildPlugin(String plugin, Server server) {
+		if (loaded) return;
 
-	/**
-	 * @author Pedro
-	 */
-	@Nullable
-	public abstract void onPluginEnable();
+		this.loaded=true;
+		this.server=server;
+		this.plugin=plugin;
 
-	/**
-	 * @author Pedro
-	 */
+		//START BUILD PLUGIN FOLDER;
+		File directory = new File(SthouchProject.getDirectory(), plugin);
+		this.folder=directory;
+		//END BUILD PLUGIN FOLDER;
+	}
+
+	public Server getServer() {
+		return server;
+	}
+
+	@Override
 	@Nullable
-	public abstract void onPluginDisable();
+	public File getPluginFolder() {
+		return folder;
+	}
+
+	@Override
+	@Nullable
+	public void onPluginEnable() {}
+
+	@Override
+	@Nullable
+	public void onPluginDisable() {}
 
 }
