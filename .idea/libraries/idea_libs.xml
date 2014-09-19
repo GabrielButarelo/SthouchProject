@@ -3,8 +3,11 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/Base64Coder.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/SnakeYaml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Annotations.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/Annotations.jar!/src" />
+    </SOURCES>
   </library>
 </component>
