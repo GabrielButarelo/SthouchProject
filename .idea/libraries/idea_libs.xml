@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="idea_libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/Base64Coder.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SnakeYaml.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
