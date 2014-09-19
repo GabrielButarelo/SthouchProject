@@ -191,4 +191,5 @@ public class SthouchServer implements Server {
 		return new LogManager();
 	}
 
+    public static final Logger logger = SthouchProject.getLogger();
 }

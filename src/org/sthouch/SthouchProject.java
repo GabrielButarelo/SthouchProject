@@ -41,6 +41,7 @@ package org.sthouch;
 import java.io.*;
 
 import biz.source_code.base64Coder.*;
+import org.sthouch.logger.Logger;
 
 import org.sthouch.logger.Logger;
 
@@ -195,5 +196,15 @@ public class SthouchProject {
 		}
 		buildLicense();
     }
+
+    /**
+     * <p> Pegar logger global do SthouchProject</p>
+     * @author JonathanScripter
+     */
+
+    public static Logger getLogger(){
+        return logger;
+    }
+
 
 }

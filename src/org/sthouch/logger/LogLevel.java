@@ -43,7 +43,10 @@ package org.sthouch.logger;
  * Created by JonathanScripter on 19/set/2014 on 00:32
  */
 public enum LogLevel {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     OFF,
     SEVERE,
     WARNING,
@@ -55,4 +58,8 @@ public enum LogLevel {
     ALL,
     EXCPETION
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master
