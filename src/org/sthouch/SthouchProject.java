@@ -43,6 +43,7 @@ import java.io.*;
 import org.sthouch.dll.*;
 
 import biz.source_code.base64Coder.*;
+import org.sthouch.logger.Logger;
 
 /**
  * <p>Classe Principal do Sthouch Project</p>
@@ -53,6 +54,7 @@ public class SthouchProject {
 
 	public static String version = "";
 	public static File directory = null;
+    private static final Logger logger = new Logger();
 
 	/**
 	 * <p>M�todo Principal, In�cio do Projeto</p>
@@ -61,6 +63,7 @@ public class SthouchProject {
 	 */
 	public static void main(String[] args) {
 		version = "1.2.2D Alpha (1.5.2)";
+
 
 		// START OF PREPARING DIRECTORY
 		directory = new File(".");
@@ -90,7 +93,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -101,7 +104,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -111,7 +114,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -121,7 +124,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -131,7 +134,7 @@ public class SthouchProject {
 		if (!file.exists()) {
 			try {
 				file.mkdir();
-				System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+				logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -145,7 +148,7 @@ public class SthouchProject {
 		file = new File(directory + File.separator + "license.txt");
 		try {
 			file.createNewFile();
-			System.out.println("Novo arquivo criado: " + file.getAbsolutePath());
+			logger.info("Novo arquivo criado: " + file.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -173,5 +176,15 @@ public class SthouchProject {
 			e.printStackTrace();
 		}
 	}
+
+    /**
+     * <p> Pegar logger global do SthouchProject</p>
+     * @author JonathanScripter
+     */
+
+    public static Logger getLogger(){
+        return logger;
+    }
+
 
 }
