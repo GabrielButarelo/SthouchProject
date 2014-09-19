@@ -40,13 +40,9 @@ package org.sthouch.exceptions;
  * Created by JonathanScripter on 19/set/2014 on 01:49
  */
 public class AlreadyRegisteredEventException extends Throwable {
-<<<<<<< HEAD
 
 	private static final long serialVersionUID = -7717586426514880259L;
 
 	public AlreadyRegisteredEventException(String s) {
-=======
-    public AlreadyRegisteredEventException(String s) {
->>>>>>> origin/master
     }
 }

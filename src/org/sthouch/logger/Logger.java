@@ -49,10 +49,7 @@ import java.util.Locale;
  * Created by JonathanScripter on 19/SET/2014 on 00:30
  */
 
-<<<<<<< HEAD
 @SuppressWarnings({})
-=======
->>>>>>> origin/master
 public final class Logger {
 
     private static final String startLog = "[$DATE $TIME] [$LEVEL/#$THREAD]$STRING_NAME$LOG";
