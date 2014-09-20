@@ -41,4 +41,6 @@ package org.sthouch.api.events;
  * Created by JonathanScripter on 19/set/2014 on 01:43
  */
 public class Event {
+
 }
+
