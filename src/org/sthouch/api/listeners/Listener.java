@@ -43,6 +43,7 @@ import org.sthouch.api.plugin.Plugin;
 import org.sthouch.exceptions.AlreadyRegisteredEventException;
 import org.sthouch.exceptions.AlreadyRegisteredListenerException;
 import org.sthouch.exceptions.CannotCallNotRegisteredEvent;
+import org.sthouch.exceptions.CannotUnregisterListenerException;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -56,67 +57,95 @@ import java.util.Map;
 public class Listener {
     private final List<Class<? extends Event>> eventsList = new ArrayList<Class<? extends Event>>();
 
-    private final HashMap<Plugin, MinecraftListener> listenersList = new HashMap<Plugin, MinecraftListener>();
+    private final HashMap<Plugin, List<MinecraftListener>> listenersList = new HashMap<Plugin, List<MinecraftListener>>();
 
     /**
      * Registra o listener de seu plugin
-     * @param plugin Plugin
+     *
+     * @param plugin   Plugin
      * @param listener Classe do Listener
      */
-    public void registerListener(Plugin plugin, MinecraftListener listener){
-        if(!listenersList.containsKey(listener)){
-            listenersList.put(plugin, listener);
-        }else{
-            try{
-                throw new AlreadyRegisteredListenerException("Error on register listener "+listener.getClass().getName()+" from plugin "+plugin.getPluginName());
-            }catch(Throwable e){
-                SthouchServer.logger.exception(e);
-                return;
-            }
+    public void registerListener(Plugin plugin, MinecraftListener listener) {
+        if (!listenersList.containsKey(plugin)) {
+            List<MinecraftListener> mcl = new ArrayList<>();
+            mcl.add(listener);
+            listenersList.put(plugin, mcl);
+        } else {
+            List<MinecraftListener> mcl = listenersList.get(plugin);
+            if (!mcl.contains(listener)) {
+                mcl.add(listener);
+                listenersList.put(plugin, mcl);
+            } else {
+                try {
+                    throw new AlreadyRegisteredListenerException("Error on register listener " + listener.getClass().getName() + " from plugin " + plugin.getPluginName());
+                } catch (Throwable e) {
+                    SthouchServer.logger.exception(e);
+                    return;
+                }
 
+            }
         }
     }
 
-    public void registerEvent(Class<? extends Event> event){
-        if(!eventsList.contains(event)){
+    public void registerEvent(Class<? extends Event> event) {
+        if (!eventsList.contains(event)) {
             eventsList.add(event);
-        }else{
-            try{
-                throw new AlreadyRegisteredEventException("Error on register event "+event.getName());
-            }catch(Throwable e){
+        } else {
+            try {
+                throw new AlreadyRegisteredEventException("Error on register event " + event.getName());
+            } catch (Throwable e) {
                 SthouchServer.logger.exception(e);
                 return;
             }
         }
     }
 
-    public void callEvent(Event event){
+    public void unregisterPluginListener(Plugin plugin, MinecraftListener listener) {
+        if (listenersList.containsKey(plugin)) {
+            List<MinecraftListener> mcl = new ArrayList<>();
+            mcl.remove(listener);
+            listenersList.put(plugin, mcl);
+        } else {
+            try {
+                throw new CannotUnregisterListenerException("Error on unregister listener " + listener.getClass().getName() + " from plugin " + plugin.getPluginName() + ". Is registered?");
+            } catch (Throwable e) {
+                SthouchServer.logger.exception(e);
+                return;
+            }
 
-        if(!eventsList.contains(event.getClass())){
-            try{
-                throw new CannotCallNotRegisteredEvent("Cannot call event "+event.getClass().getCanonicalName()+", are event registered?");
-            }catch(Throwable e){
+        }
+    }
+
+    public void callEvent(Event event) {
+
+        if (!eventsList.contains(event.getClass())) {
+            try {
+                throw new CannotCallNotRegisteredEvent("Cannot call event " + event.getClass().getCanonicalName() + ", are event registered?");
+            } catch (Throwable e) {
                 SthouchServer.logger.exception(e);
                 return;
             }
         }
         Method[] methods;
 
-        for(Map.Entry<Plugin, MinecraftListener> l : listenersList.entrySet()){
-            Object o = l.getValue();
-            Object[] classes = o.getClass().getClasses();
-            System.out.println(o.getClass().getCanonicalName());
-            for (Method m : o.getClass().getMethods()) {
-                if (m.getAnnotation(RegisteredEvent.class) != null) {
-                    Class[] requiredTypes = m.getParameterTypes();
-                    try{
-                        if (requiredTypes[0].isAssignableFrom(event.getClass())){
-                            try{
-                                m.invoke(o, event);
-                            }catch(Exception ex){}
-                        }
-                    }catch(Exception e1){
+        for (Map.Entry<Plugin, List<MinecraftListener>> dl : listenersList.entrySet()) {
+            for(MinecraftListener l : dl.getValue()){
+                Object o = l;
+                Object[] classes = o.getClass().getClasses();
+                System.out.println(o.getClass().getCanonicalName());
+                for (Method m : o.getClass().getMethods()) {
+                    if (m.getAnnotation(RegisteredEvent.class) != null) {
+                        Class[] requiredTypes = m.getParameterTypes();
+                        try {
+                            if (requiredTypes[0].isAssignableFrom(event.getClass())) {
+                                try {
+                                    m.invoke(o, event);
+                                } catch (Exception ex) {
+                                }
+                            }
+                        } catch (Exception e1) {
 
+                        }
                     }
                 }
             }
@@ -125,10 +154,9 @@ public class Listener {
 
     private static final Listener defaultListener = new Listener();
 
-    private static Listener getDefaultListener(){
+    private static Listener getDefaultListener() {
         return defaultListener;
     }
 
 
 }
-u
