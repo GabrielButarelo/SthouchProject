@@ -40,10 +40,9 @@ package org.sthouch.api.listeners;
 import org.sthouch.SthouchServer;
 import org.sthouch.api.events.Event;
 import org.sthouch.api.plugin.Plugin;
-import org.sthouch.exceptions.AlreadyRegisteredEventException;
-import org.sthouch.exceptions.AlreadyRegisteredListenerException;
-import org.sthouch.exceptions.CannotCallNotRegisteredEvent;
-import org.sthouch.exceptions.CannotUnregisterListenerException;
+import org.sthouch.api.server.Server;
+import org.sthouch.exceptions.*;
+import org.sthouch.internal.events.PreparedListeners;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -58,6 +57,8 @@ public class Listener {
     private final List<Class<? extends Event>> eventsList = new ArrayList<Class<? extends Event>>();
 
     private final HashMap<Plugin, List<MinecraftListener>> listenersList = new HashMap<Plugin, List<MinecraftListener>>();
+
+    private final List<MinecraftListener> listenersListServer = new ArrayList<>();
 
     /**
      * Registra o listener de seu plugin
@@ -87,6 +88,31 @@ public class Listener {
         }
     }
 
+
+    public void registerInternalListener(MinecraftListener listener) throws CannotRegisterInternalEvent {
+        if (!listenersListServer.contains(listener)) {
+            StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+            ArrayList<String> ct = new ArrayList<>();
+            for(StackTraceElement ste : stackTraceElements){
+                ct.add(ste.getClassName());
+            }
+            if(ct.contains(PreparedListeners.class.getCanonicalName())){
+                listenersListServer.add(listener);
+            }else{
+                throw new CannotRegisterInternalEvent("You cannot register internal event out of PreparedListeners.class");
+            }
+
+        } else {
+                try {
+                    throw new AlreadyRegisteredListenerException("Error on register listener " + listener.getClass().getName());
+                } catch (Throwable e) {
+                    SthouchServer.logger.exception(e);
+                    return;
+                }
+
+        }
+    }
+
     public void registerEvent(Class<? extends Event> event) {
         if (!eventsList.contains(event)) {
             eventsList.add(event);
@@ -102,7 +128,7 @@ public class Listener {
 
     public void unregisterPluginListener(Plugin plugin, MinecraftListener listener) {
         if (listenersList.containsKey(plugin)) {
-            List<MinecraftListener> mcl = new ArrayList<>();
+            List<MinecraftListener> mcl = listenersList.get(plugin);
             mcl.remove(listener);
             listenersList.put(plugin, mcl);
         } else {
@@ -113,6 +139,14 @@ public class Listener {
                 return;
             }
 
+        }
+
+    }
+
+
+    public void unregisterAllPluginListeners(Plugin plugin) {
+        if (listenersList.containsKey(plugin)) {
+            listenersList.remove(plugin);
         }
     }
 
@@ -130,23 +164,30 @@ public class Listener {
 
         for (Map.Entry<Plugin, List<MinecraftListener>> dl : listenersList.entrySet()) {
             for(MinecraftListener l : dl.getValue()){
-                Object o = l;
-                Object[] classes = o.getClass().getClasses();
-                System.out.println(o.getClass().getCanonicalName());
-                for (Method m : o.getClass().getMethods()) {
-                    if (m.getAnnotation(RegisteredEvent.class) != null) {
-                        Class[] requiredTypes = m.getParameterTypes();
-                        try {
-                            if (requiredTypes[0].isAssignableFrom(event.getClass())) {
-                                try {
-                                    m.invoke(o, event);
-                                } catch (Exception ex) {
-                                }
-                            }
-                        } catch (Exception e1) {
+                callML(l, event);
+            }
+        }
 
+        for(MinecraftListener l : listenersListServer){
+            callML(l, event);
+        }
+    }
+
+    private void callML(MinecraftListener listener, Event event){
+        Object o = listener;
+        Object[] classes = o.getClass().getClasses();
+        for (Method m : o.getClass().getMethods()) {
+            if (m.getAnnotation(RegisteredEvent.class) != null) {
+                Class[] requiredTypes = m.getParameterTypes();
+                try {
+                    if (requiredTypes[0].isAssignableFrom(event.getClass())) {
+                        try {
+                            m.invoke(o, event);
+                        } catch (Exception ex) {
                         }
                     }
+                } catch (Exception e1) {
+
                 }
             }
         }
@@ -154,7 +195,7 @@ public class Listener {
 
     private static final Listener defaultListener = new Listener();
 
-    private static Listener getDefaultListener() {
+    public static Listener getDefaultListener() {
         return defaultListener;
     }
 

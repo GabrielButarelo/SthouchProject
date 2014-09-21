@@ -42,6 +42,8 @@ import java.io.*;
 
 import biz.source_code.base64Coder.*;
 
+import org.sthouch.api.plugin.Plugin;
+import org.sthouch.internal.events.PreparedListeners;
 import org.sthouch.logger.Logger;
 
 /**
@@ -61,6 +63,7 @@ public class SthouchProject {
 	 * @author Pedro
 	 */
 	public static void main(String[] args) {
+        PreparedListeners.init();
 		logger.info("Preparando para Iniciar Sthouch Project 1.5.2-D1");
 		version = "1.2.2D Alpha (1.5.2)";
 
@@ -74,6 +77,8 @@ public class SthouchProject {
 
 		logger.info("Iniciando Sthouch Project 1.5.2-D1");
 		//start();
+
+
 	}
 
 	/**
@@ -90,9 +95,9 @@ public class SthouchProject {
 	 * @author Pedro
 	 */
 	public static void start() {
-		logger.info("Verificando arquivos padrões..");
+		logger.info("Verificando arquivos padrï¿½es..");
 		createFiles();
-		logger.info("Arquivos não existentes foram criados!");
+		logger.info("Arquivos nï¿½o existentes foram criados!");
 	}
 
 	/**
@@ -126,7 +131,7 @@ public class SthouchProject {
     }
 
     /**
-     * <p>Criar arquivos padrões.</p>
+     * <p>Criar arquivos padrï¿½es.</p>
      * @author Pedro
      */
     private static void createFiles() {
@@ -195,5 +200,6 @@ public class SthouchProject {
 		}
 		buildLicense();
     }
+
 
 }

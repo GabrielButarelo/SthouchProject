@@ -36,13 +36,58 @@
  * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  **/
 
-package org.sthouch.api.events.entity.player;
+package org.sthouch.api.events.entity.player.chat;
 
-import org.sthouch.api.events.Event;
+import org.sthouch.api.chating.Chat;
+import org.sthouch.api.events.entity.player.PlayerEvent;
+import org.sthouch.api.listeners.CancellableEvent;
+import org.sthouch.api.player.Player;
 
 /**
  * Created by JonathanScripter on 19/set/2014 on 01:44
  */
-public class PlayerChatEvent extends Event {
+public class PlayerChatEvent extends PlayerEvent implements CancellableEvent{
 
+    private final Chat chat;
+    private boolean denied = false;
+
+    public PlayerChatEvent(Player player, Chat chat){
+        super(player);
+        this.chat = chat;
+
+    }
+
+    public Chat getChat(){
+        return this.chat;
+    }
+
+    @Override
+    public boolean isDenied() {
+        return this.denied;
+    }
+
+    @Override
+    public void setDenied(boolean denied) {
+        this.denied = denied;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public boolean isCancellable() {
+        return true;
+    }
+
+    @Override
+    public String getName() {
+        return "PlayerChatEvent";
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+
+    }
 }

@@ -35,20 +35,25 @@
  *
  * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  **/
-package org.sthouch.api.events;
+package org.sthouch.api.chating;
 
 /**
- * Created by JonathanScripter on 19/set/2014 on 01:43
+ * Created by JonathanScripter on 20/set/2014 on 21:59
  */
-public interface Event {
+public class Chat {
 
-    public boolean isCancelled();
+    private String chatMessage;
 
-    public boolean isCancellable();
+    public Chat(String chatMessage){
+        this.chatMessage = chatMessage;
+    }
 
-    public String getName();
+    public void setMessage(String message){
+        this.chatMessage = message;
+    }
 
-    public void setCancelled(boolean cancel);
+    public String getMessage(){
+        return this.chatMessage;
+    }
 
 }
-
