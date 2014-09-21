@@ -71,10 +71,6 @@ public class PlayerChatEvent extends PlayerEvent implements CancellableEvent{
         this.denied = denied;
     }
 
-    @Override
-    public boolean isCancelled() {
-        return false;
-    }
 
     @Override
     public boolean isCancellable() {
@@ -86,8 +82,5 @@ public class PlayerChatEvent extends PlayerEvent implements CancellableEvent{
         return "PlayerChatEvent";
     }
 
-    @Override
-    public void setCancelled(boolean cancel) {
 
-    }
 }

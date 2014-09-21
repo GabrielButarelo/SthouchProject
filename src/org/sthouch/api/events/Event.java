@@ -42,13 +42,9 @@ package org.sthouch.api.events;
  */
 public interface Event {
 
-    public boolean isCancelled();
-
     public boolean isCancellable();
 
     public String getName();
-
-    public void setCancelled(boolean cancel);
 
 }
 
