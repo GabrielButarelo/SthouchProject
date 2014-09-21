@@ -36,19 +36,56 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.exceptions;
+package org.sthouch.api.commands;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.sthouch.api.plugin.Plugin;
 
 /**
  * 
  * @author Pedro
  *
  */
-@SuppressWarnings("unused")
-public class DownloadFailedException extends Throwable {
+public class Command {
 
-	private static final long serialVersionUID = 1309606258508090932L;
+	private Plugin plugin = null;
+	private String comando = "";
+	private String description = "";
+	private String permission = "";
+	private List<String> shourtcuts = new ArrayList<>();
 
-	private DownloadFailedException() {}
-	public DownloadFailedException(String message) {}
+	public Command(Plugin plugin ,String comando, String description, String permission) {
+		if (!comando.startsWith("/")) {
+			comando = "/" + comando;
+		}
+
+		this.comando=comando;
+		this.comando=comando.replaceAll(" ", "").toLowerCase();
+		this.description=description;
+		this.permission=permission;
+		this.plugin=plugin;
+	}
+
+	public String getCommand() {
+		return comando;
+	}
+
+	public Plugin getPluginOfCommand() {
+		return plugin;
+	}
+
+	public String getCommandDescription() {
+		return description;
+	}
+
+	public String getCommandPermission() {
+		return permission;
+	}
+
+	public List<String> getShourtcuts() {
+		return shourtcuts;
+	}
 
 }

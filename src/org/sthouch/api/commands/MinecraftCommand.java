@@ -36,19 +36,15 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.exceptions;
+package org.sthouch.api.commands;
 
 /**
  * 
  * @author Pedro
  *
  */
-@SuppressWarnings("unused")
-public class DownloadFailedException extends Throwable {
+public abstract interface MinecraftCommand {
 
-	private static final long serialVersionUID = 1309606258508090932L;
-
-	private DownloadFailedException() {}
-	public DownloadFailedException(String message) {}
+	public abstract void execute();
 
 }

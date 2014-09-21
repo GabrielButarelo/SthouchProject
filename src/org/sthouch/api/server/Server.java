@@ -2,7 +2,7 @@
  * 
   * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
   * 
-  * Copyright (C) 2014 <http://www.sthouch.org/ e contribuidores (Contribuidores do Projeto)>
+  * Copyright (C) 2014 Sthouch Team <http://www.sthouch.org/ e contribuidores>
   * 
   * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
   * deste software e arquivos de documentação associados (o "Software"), para negociar
@@ -40,8 +40,11 @@ package org.sthouch.api.server;
 
 import java.util.List;
 
+import org.sthouch.api.commands.CommandManager;
+import org.sthouch.api.commands.PluginCommandManager;
 import org.sthouch.api.logs.LogManager;
 import org.sthouch.api.player.Player;
+import org.sthouch.api.plugin.Plugin;
 import org.sthouch.api.plugin.PluginManager;
 import org.sthouch.api.world.World;
 
@@ -244,5 +247,24 @@ public interface Server {
 	 * @return LogManager Instance
 	 */
 	public LogManager getLogManager();
+
+	/**
+	 * @author Pedro
+	 * @return Console Instance
+	 */
+	public Console getConsole();
+
+	/**
+	 * @author Pedro
+	 * @return CommandManager Instance
+	 */
+	public CommandManager getCommandManager();
+
+	/**
+	 * @author Pedro
+	 * @param plugin Variavel que representa o seu Plugin
+	 * @return PluginCommandManager Instance
+	 */
+	public PluginCommandManager getPluginCommandManager(Plugin plugin);
 
 }

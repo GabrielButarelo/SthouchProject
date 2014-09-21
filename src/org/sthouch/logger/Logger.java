@@ -38,9 +38,6 @@
 package org.sthouch.logger;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.sthouch.api.chating.Chat;
-import org.sthouch.api.events.console.ConsoleLogEvent;
-import org.sthouch.api.listeners.Listener;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -111,7 +108,6 @@ public final class Logger {
          * End parse
          */
         System.out.println(logString);
-        Listener.getDefaultListener().callEvent(new ConsoleLogEvent(new Chat(logString)));
         try{
             if(!file.exists()){
                 file.createNewFile();

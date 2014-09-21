@@ -36,19 +36,26 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.exceptions;
+package org.sthouch.api.commands;
 
 /**
- * 
+ * Enum basico de diferenciação de Entidades que executam comandos.
  * @author Pedro
  *
  */
-@SuppressWarnings("unused")
-public class DownloadFailedException extends Throwable {
+public enum CommandEntity {
 
-	private static final long serialVersionUID = 1309606258508090932L;
+	PLAYER(1),
+	CONSOLE(2);
 
-	private DownloadFailedException() {}
-	public DownloadFailedException(String message) {}
+	private final int id;
+
+	private CommandEntity(int id) {
+		this.id=id;
+	}
+
+	public int getId() {
+		return id;
+	}
 
 }

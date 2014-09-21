@@ -36,19 +36,50 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.exceptions;
+package org.sthouch.api.commands;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.eclipse.jdt.annotation.Nullable;
+import org.sthouch.api.plugin.Plugin;
 
 /**
  * 
  * @author Pedro
  *
  */
-@SuppressWarnings("unused")
-public class DownloadFailedException extends Throwable {
+public class CommandManager {
 
-	private static final long serialVersionUID = 1309606258508090932L;
+	protected static HashMap<Plugin, Command> register = new HashMap<>();
 
-	private DownloadFailedException() {}
-	public DownloadFailedException(String message) {}
+	@Nullable
+	public Command getCommand(String str) {
+		str = str.replaceAll(" ", "").toLowerCase();
+		Command command = null;
+		for (Command cmd : getCommands()) {
+			if (cmd.getCommand().equalsIgnoreCase(str)) {
+				command = cmd;
+				break;
+			}
+		}
+
+		return command;
+	}
+
+	public boolean hasCommand(String str) {
+		str = str.replaceAll(" ", "").toLowerCase();
+		return getCommand(str) != null;
+	}
+
+	public List<Command> getCommands() {
+		List<Command> cmds = new ArrayList<>();
+		for (Command cmd : register.values()) {
+			cmds.add(cmd);
+		}
+
+		return cmds;
+	}
 
 }

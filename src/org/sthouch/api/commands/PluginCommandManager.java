@@ -36,19 +36,36 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.exceptions;
+package org.sthouch.api.commands;
+
+import org.sthouch.api.plugin.Plugin;
 
 /**
  * 
  * @author Pedro
  *
  */
-@SuppressWarnings("unused")
-public class DownloadFailedException extends Throwable {
+public class PluginCommandManager {
 
-	private static final long serialVersionUID = 1309606258508090932L;
+	private Plugin plugin = null;
 
-	private DownloadFailedException() {}
-	public DownloadFailedException(String message) {}
+	/**
+	 * Criar instâcia
+	 * @param plugin Instância referente ao Plugin
+	 */
+	public PluginCommandManager(Plugin plugin) {
+		this.plugin=plugin;
+	}
+
+	/**
+	 * 
+	 * @param command Comando
+	 * @param description Descrição do Comando
+	 * @param permission Permissão do Comando
+	 */
+	public void register(String command, String description, String permission) {
+		command = command.replaceAll(" ", "").toLowerCase();
+		CommandManager.register.put(plugin, new Command(plugin, command, description, permission));
+	}
 
 }

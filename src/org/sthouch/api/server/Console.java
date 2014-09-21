@@ -36,19 +36,25 @@
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
 
-package org.sthouch.exceptions;
+package org.sthouch.api.server;
 
 /**
  * 
  * @author Pedro
  *
  */
-@SuppressWarnings("unused")
-public class DownloadFailedException extends Throwable {
+public interface Console {
 
-	private static final long serialVersionUID = 1309606258508090932L;
+	/**
+	 * @author Pedro
+	 * @param n Mensagem a ser enviada.
+	 */
+	public void sendMessage(String n);
 
-	private DownloadFailedException() {}
-	public DownloadFailedException(String message) {}
+	/**
+	 * @author Pedro
+	 * @param cmd Comando a ser executado (Com /).
+	 */
+	public void executeCommand(String cmd);
 
 }
