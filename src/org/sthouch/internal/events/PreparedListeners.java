@@ -37,10 +37,10 @@
  **/
 package org.sthouch.internal.events;
 
+import org.sthouch.SthouchProject;
 import org.sthouch.api.events.console.ConsoleLogEvent;
 import org.sthouch.api.events.entity.player.PlayerEvent;
 import org.sthouch.api.events.entity.player.chat.PlayerChatEvent;
-import org.sthouch.api.listeners.Listener;
 import org.sthouch.exceptions.CannotRegisterInternalEvent;
 import org.sthouch.internal.events.log.LogListener;
 
@@ -50,11 +50,11 @@ import org.sthouch.internal.events.log.LogListener;
 public class PreparedListeners {
     public static void init() {
         try {
-            Listener.getDefaultListener().registerEvent(PlayerEvent.class);
-            Listener.getDefaultListener().registerEvent(PlayerChatEvent.class);
-            Listener.getDefaultListener().registerEvent(ConsoleLogEvent.class);
+            SthouchProject.getServer().getListenerManager().registerEvent(PlayerEvent.class);
+            SthouchProject.getServer().getListenerManager().registerEvent(PlayerChatEvent.class);
+            SthouchProject.getServer().getListenerManager().registerEvent(ConsoleLogEvent.class);
 
-            Listener.getDefaultListener().registerInternalListener(new LogListener());
+            SthouchProject.getServer().getListenerManager().registerInternalListener(new LogListener());
         }catch(CannotRegisterInternalEvent e){
             e.printStackTrace();
         }

@@ -38,6 +38,7 @@
 package org.sthouch.logger;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.sthouch.api.listeners.Listener;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -200,5 +201,6 @@ public final class Logger {
     public void warning(Object warning){
         this.log(LogLevel.WARNING, warning);
     }
+
 
 }

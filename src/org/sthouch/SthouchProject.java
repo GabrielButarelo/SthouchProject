@@ -42,6 +42,7 @@ import java.io.*;
 
 import biz.source_code.base64Coder.*;
 
+import org.sthouch.api.listeners.Listener;
 import org.sthouch.internal.events.PreparedListeners;
 import org.sthouch.logger.Logger;
 
@@ -55,6 +56,7 @@ public class SthouchProject {
 	public static String version = "";
 	public static File directory = null;
     private static final Logger logger = new Logger();
+    private static SthouchServer server;
 
 	/**
 	 * <p>M�todo Principal, In�cio do Projeto</p>
@@ -76,6 +78,7 @@ public class SthouchProject {
 
 		logger.info("Iniciando Sthouch Project 1.5.2-D1");
 		//start();
+        server = new SthouchServer();
 	}
 
 	/**
@@ -196,6 +199,10 @@ public class SthouchProject {
 			e.printStackTrace();
 		}
 		buildLicense();
+    }
+
+    public static SthouchServer getServer(){
+        return server;
     }
 
 }

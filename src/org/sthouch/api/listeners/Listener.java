@@ -193,11 +193,7 @@ public class Listener {
         }
     }
 
-    private static final Listener defaultListener = new Listener();
 
-    public static Listener getDefaultListener() {
-        return defaultListener;
-    }
 
 
 }

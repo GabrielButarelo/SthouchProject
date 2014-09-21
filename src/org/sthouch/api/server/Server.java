@@ -1,37 +1,37 @@
 /*
  * 
-  * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que está Licenciado com a MIT Licence (MIT).
+  * Este arquivo pertence (e faz parte) ao/do Sthouch Project, que estï¿½ Licenciado com a MIT Licence (MIT).
   * 
   * Copyright (C) 2014 Sthouch Team <http://www.sthouch.org/ e contribuidores>
   * 
-  * A permissão é concedida, a título gratuito, a qualquer pessoa que obtenha uma cópia
-  * deste software e arquivos de documentação associados (o "Software"), para negociar
-  * o Software sem restrição, incluindo, sem limitação, os direitos
+  * A permissï¿½o ï¿½ concedida, a tï¿½tulo gratuito, a qualquer pessoa que obtenha uma cï¿½pia
+  * deste software e arquivos de documentaï¿½ï¿½o associados (o "Software"), para negociar
+  * o Software sem restriï¿½ï¿½o, incluindo, sem limitaï¿½ï¿½o, os direitos
   * para usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender
-  * cópias do Software, e permitir que as pessoas a quem o Software é
-  * fornecido façam isso, sujeito às seguintes condições:
+  * cï¿½pias do Software, e permitir que as pessoas a quem o Software ï¿½
+  * fornecido faï¿½am isso, sujeito ï¿½s seguintes condiï¿½ï¿½es:
   *
   * ---------
   *
-  * O aviso de copyright acima, os avisos abaixo, e este aviso de permissão devem ser incluídos em todas as cópias ou partes 
+  * O aviso de copyright acima, os avisos abaixo, e este aviso de permissï¿½o devem ser incluï¿½dos em todas as cï¿½pias ou partes 
   * substanciais do Software, obrigatoriamente;
   * 
-  * Os Nome(s) dos detentores de direitos autorais acima deverá não poder ser usado em publicidade ou de outra forma para promover
-  * a venda, uso ou outras negociações em Este Software sem autorização prévia por escrito, do Líder do Projeto.
+  * Os Nome(s) dos detentores de direitos autorais acima deverï¿½ nï¿½o poder ser usado em publicidade ou de outra forma para promover
+  * a venda, uso ou outras negociaï¿½ï¿½es em Este Software sem autorizaï¿½ï¿½o prï¿½via por escrito, do Lï¿½der do Projeto.
   * 
-  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), é/são aquele/aqueles que fazem, ou, por sua vez,
-  * fizeram parte da equipe oficial, sendo assim então ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
-  * Contribuíntes e Desenvolvedores do mesmo. Qualquer outro usuário que, por sua vez, não seja/esteja dentro/participando da
-  * equipe oficial, ou nunca tenha participado oficialmente da equipe, não tem direitos como "contribuidores" ou "contribuinte" do
+  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), ï¿½/sï¿½o aquele/aqueles que fazem, ou, por sua vez,
+  * fizeram parte da equipe oficial, sendo assim entï¿½o ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
+  * Contribuï¿½ntes e Desenvolvedores do mesmo. Qualquer outro usuï¿½rio que, por sua vez, nï¿½o seja/esteja dentro/participando da
+  * equipe oficial, ou nunca tenha participado oficialmente da equipe, nï¿½o tem direitos como "contribuidores" ou "contribuinte" do
   * projeto Sthouch (ou Sthouch Project).
   * 
   * ---------
   * 
-  * O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLÍCITA, INCLUINDO, SEM LIMITAÇÃO, 
-  * AS GARANTIAS DE COMERCIALIZAÇÃO,ADEQUAÇÃO A UM DETERMINADO FIM E NÃO VIOLAÇÃO.
-  * EM NENHUM CASO A AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERÁ RESPONSÁVEL POR QUALQUER RECLAMAÇÃO, DANOS OU OUTRAS
-  * RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CUMPRIMENTO DE CONTRATO OU QUALQUER OUTRO MEIO, DE OU EM CONEXÃO COM O SOFTWARE OU O 
-  * USO OU OUTRAS NEGOCIAÇÕES O SOFTWARE.
+  * O SOFTWARE ï¿½ FORNECIDO "COMO ESTï¿½", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPLï¿½CITA, INCLUINDO, SEM LIMITAï¿½ï¿½O, 
+  * AS GARANTIAS DE COMERCIALIZAï¿½ï¿½O,ADEQUAï¿½ï¿½O A UM DETERMINADO FIM E Nï¿½O VIOLAï¿½ï¿½O.
+  * EM NENHUM CASO A AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERï¿½ RESPONSï¿½VEL POR QUALQUER RECLAMAï¿½ï¿½O, DANOS OU OUTRAS
+  * RESPONSABILIDADE, SEJA EM UMA Aï¿½ï¿½O DE CUMPRIMENTO DE CONTRATO OU QUALQUER OUTRO MEIO, DE OU EM CONEXï¿½O COM O SOFTWARE OU O 
+  * USO OU OUTRAS NEGOCIAï¿½ï¿½ES O SOFTWARE.
   * 
   * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  */
@@ -42,6 +42,7 @@ import java.util.List;
 
 import org.sthouch.api.commands.CommandManager;
 import org.sthouch.api.commands.PluginCommandManager;
+import org.sthouch.api.listeners.Listener;
 import org.sthouch.api.logs.LogManager;
 import org.sthouch.api.player.Player;
 import org.sthouch.api.plugin.Plugin;
@@ -49,7 +50,7 @@ import org.sthouch.api.plugin.PluginManager;
 import org.sthouch.api.world.World;
 
 /**
- * <p>Interface de gerênciamento básico do Servidor.</p>
+ * <p>Interface de gerï¿½nciamento bï¿½sico do Servidor.</p>
  * @author Pedro
  *
  */
@@ -70,21 +71,21 @@ public interface Server {
 	public void setServerMotd(String motd);
 
 	/**
-	 * <p>Marcar se a chuva está ou não permitida.</p>
+	 * <p>Marcar se a chuva estï¿½ ou nï¿½o permitida.</p>
 	 * @author Pedro
 	 * @param allowed
 	 */
 	public void setStormAllowed(boolean allowed);
 
 	/**
-	 * <p>Efetuar Download de uma versão do Sthouch.</p>
+	 * <p>Efetuar Download de uma versï¿½o do Sthouch.</p>
 	 * @author Pedro
 	 * @param version
 	 */
 	public void downloadSthouch(String version);
 
 	/**
-	 * <p>Efetuar Download da ultima versão do Sthouch.</p>
+	 * <p>Efetuar Download da ultima versï¿½o do Sthouch.</p>
 	 * @author Pedro
 	 */
 	public void downloadLastSthouch();
@@ -105,7 +106,7 @@ public interface Server {
 	public void banPlayer(String player, String reason);
 
 	/**
-	 * <p>Banir um Jogador pela variável Player.</p>
+	 * <p>Banir um Jogador pela variï¿½vel Player.</p>
 	 * @author Pedro
 	 * @param player
 	 * @param reason
@@ -120,14 +121,14 @@ public interface Server {
 	public void unbanPlayer(String player);
 
 	/**
-	 * <p>Desbanir um Jogador pela variável Player.</p>
+	 * <p>Desbanir um Jogador pela variï¿½vel Player.</p>
 	 * @author Pedro
 	 * @param player
 	 */
 	public void unbanPlayer(Player player);
 
 	/**
-	 * <p>Retorna a Variável Player pega pelo nome do Jogador.</p>
+	 * <p>Retorna a Variï¿½vel Player pega pelo nome do Jogador.</p>
 	 * @author Pedro
 	 * @param player
 	 * @return Player
@@ -135,7 +136,7 @@ public interface Server {
 	public Player getPlayerByName(String player);
 
     /**
-     * <p>Retorna a Variável World pega pelo Nome dele.</p>
+     * <p>Retorna a Variï¿½vel World pega pelo Nome dele.</p>
      * @author Pedro
      * @param world
      * @return
@@ -150,14 +151,14 @@ public interface Server {
 	public List<Player> getBannedPlayers();
 
 	/**
-	 * <p>Retorna uma Lista de Jogadores que são Operadores (OP).</p>
+	 * <p>Retorna uma Lista de Jogadores que sï¿½o Operadores (OP).</p>
 	 * @author Pedro
 	 * @return List
 	 */
 	public List<Player> getOperators();
 
     /**
-     * <p>Retorna uma Lista de Jogadores que estão na Whitelist.</p>
+     * <p>Retorna uma Lista de Jogadores que estï¿½o na Whitelist.</p>
      * @author Pedro
      * @return List
      */
@@ -178,7 +179,7 @@ public interface Server {
 	public List<World> getWorlds();
 
 	/**
-	 * <p>Verifica se o Jogador está banido, pelo nome dele.</p>
+	 * <p>Verifica se o Jogador estï¿½ banido, pelo nome dele.</p>
 	 * @author Pedro
 	 * @param player
 	 * @return boolean
@@ -186,7 +187,7 @@ public interface Server {
 	public Boolean isBanned(String player);
 
 	/**
-	 * <p>Verifica se o Jogador está banido, pela variável Player.</p>
+	 * <p>Verifica se o Jogador estï¿½ banido, pela variï¿½vel Player.</p>
 	 * @author Pedro
 	 * @param player
 	 * @return boolean
@@ -194,21 +195,21 @@ public interface Server {
 	public Boolean isBanned(Player player);
 
 	/**
-	 * <p>Verifica se há novos updates do Sthouch a serem baixados.</p>
+	 * <p>Verifica se hï¿½ novos updates do Sthouch a serem baixados.</p>
 	 * @author Pedro
 	 * @return boolean
 	 */
 	public Boolean hasSthouchUpdates();
 
 	/**
-	 * <p>Retorna se a Chuva é ou não permitida.</p>
+	 * <p>Retorna se a Chuva ï¿½ ou nï¿½o permitida.</p>
 	 * @author Pedro
 	 * @return boolean
 	 */
 	public Boolean stormAllowed();
 
 	/**
-	 * <p>Retorna com a versão que o Servidor está usando do Sthouch.</p>
+	 * <p>Retorna com a versï¿½o que o Servidor estï¿½ usando do Sthouch.</p>
 	 * @author Pedro
 	 * @return String
 	 */
@@ -267,4 +268,9 @@ public interface Server {
 	 */
 	public PluginCommandManager getPluginCommandManager(Plugin plugin);
 
+    /**.
+     * @author JonathanScripter
+     * @return O gerenciador dos eventos e listeners
+     */
+    public Listener getListenerManager();
 }
