@@ -21,7 +21,7 @@
  *
  * O Intitulado Contribuidor do Projeto (Citado acima, no Copyright), é/são aquele/aqueles que fazem, ou, por sua vez,
  * fizeram parte da equipe oficial, sendo assim então ou um dia, aceitos pela equipe oficial do  Sthouch como, por sua vez,
- * Contribuintes e Desenvolvedores do mesmo. Qualquer outro usuário que, por sua vez, não seja/esteja dentro/participando da
+ * Contribu�ntes e Desenvolvedores do mesmo. Qualquer outro usuário que, por sua vez, não seja/esteja dentro/participando da
  * equipe oficial, ou nunca tenha participado oficialmente da equipe, não tem direitos como "contribuidores" ou "contribuinte" do
  * projeto Sthouch (ou Sthouch Project).
  *
@@ -35,28 +35,44 @@
  *
  * MIT Licence (MIT), Fonte: < http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT >
  **/
-package org.sthouch.internal.events;
 
-import org.sthouch.api.events.console.ConsoleLogEvent;
-import org.sthouch.api.events.entity.player.PlayerEvent;
-import org.sthouch.api.events.entity.player.chat.PlayerChatEvent;
-import org.sthouch.api.listeners.Listener;
-import org.sthouch.exceptions.CannotRegisterInternalEvent;
-import org.sthouch.internal.events.log.LogListener;
+package org.sthouch.api.events.console;
+
+import org.sthouch.api.chating.Chat;
+import org.sthouch.api.events.Event;
 
 /**
- * Created by JonathanScripter on 20/set/2014 on 22:48
+ * Created by JonathanScripter on 20/set/2014 on 22:05
  */
-public class PreparedListeners {
-    public static void init() {
-        try {
-            Listener.getDefaultListener().registerEvent(PlayerEvent.class);
-            Listener.getDefaultListener().registerEvent(PlayerChatEvent.class);
-            Listener.getDefaultListener().registerEvent(ConsoleLogEvent.class);
+public class ConsoleLogEvent implements Event {
 
-            Listener.getDefaultListener().registerInternalListener(new LogListener());
-        }catch(CannotRegisterInternalEvent e){
-            e.printStackTrace();
-        }
+    private final Chat chat;
+
+    public ConsoleLogEvent(Chat chat){
+        this.chat = chat;
+    }
+
+    public Chat getChat(){
+        return this.chat;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public boolean isCancellable() {
+        return false;
+    }
+
+    @Override
+    public String getName() {
+        return "ConsoleLogEvent";
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+
     }
 }
