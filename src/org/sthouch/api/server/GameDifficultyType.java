@@ -68,11 +68,14 @@ public enum GameDifficultyType {
 	 */
 	HARD(3);
 	
-	@SuppressWarnings("unused")
 	private final int GAME_DIFFICULTY;
 
 	private GameDifficultyType(final int GAME_DIFFICULTY){
 		this.GAME_DIFFICULTY = GAME_DIFFICULTY;
+	}
+
+	public int getGame_DifficultyID() {
+		return GAME_DIFFICULTY;
 	}
 	
 }

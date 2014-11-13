@@ -62,11 +62,16 @@ public enum GameModeType {
 	 */
 	ADVENTURE(2);
 
-	@SuppressWarnings("unused")
 	private final int GAMEMODE;
 	
 	private GameModeType(final int gamemode){
 		this.GAMEMODE = gamemode;
 	}
+
+	public int getGameModeID() {
+		return GAMEMODE;
+	}
+	
+	
 
 }

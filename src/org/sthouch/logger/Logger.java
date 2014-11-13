@@ -86,8 +86,6 @@ public final class Logger {
         /**
          * Parse Vars
          */
-
-
         GregorianCalendar calendar = new GregorianCalendar(new Locale("pt_BR"));
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 

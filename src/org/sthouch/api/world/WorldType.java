@@ -68,9 +68,11 @@ public enum WorldType {
 	private WorldType(final int world){
 		this.WORLD = world;
 	}
-
-	public int getId() {
+	
+	public int getWorldID() {
 		return WORLD;
 	}
+
+	
 
 }
